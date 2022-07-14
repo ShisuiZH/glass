@@ -9,11 +9,18 @@ const firebaseConfig = {
   measurementId: "G-BFPNK6YMVT"
 };
 
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 //                                      SIGNUP / SIGNOUT
-
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    personalCabinet(user)
+  }else{
+    personalCabinet()
+  }
+})
 function signUpWithEmailPassword() {
   // [START auth_signup_password]
   const registrationFormAdmin = document.getElementById("registration-admin");
@@ -22,6 +29,7 @@ function signUpWithEmailPassword() {
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
     db.collection("users").doc(userCredential.user.uid).set({
+      first_name: registrationFormAdmin['reg-name'].value,
       email: registrationFormAdmin['reg-email'].value,
       isAdmin: false,
     })
@@ -46,6 +54,7 @@ function signInWithEmailPassword() {
   const password = loginAdminForm['login-password'].value;
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
+    console.log("Загрузка...")
       let emailVerified = userCredential.user.emailVerified != true ? "Подтвердите email":"Ваш email подтвержден"
       db.collection("users").doc(userCredential.user.uid).get().then(snapshot=>{
         if(snapshot.data().isAdmin == true && userCredential.user.emailVerified == true){
@@ -92,4 +101,21 @@ function resetPassword(){
     alert("error!")
   });
 }
-//                              end SIGN
+//                              SIGNUP / SIGNOUT
+$('.hide').on('click', function(){
+  if($("#login-password").attr('type') == "password" || $("#reg-password").attr('type') == "password"){
+    $('#login-password').attr('type', 'text');
+    $('#reg-password').attr('type', 'text');
+    $("#hide1").toggle();
+    $("#show1").hide();
+    $("#hide2").toggle();
+    $("#show2").hide();
+  } else {
+    $('#login-password').attr('type', 'password');
+    $('#reg-password').attr('type', 'password');
+    $("#hide1").toggle();
+    $("#show1").show();
+    $("#hide2").toggle();
+    $("#show2").show();
+	}
+})

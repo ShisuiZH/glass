@@ -11,7 +11,7 @@ button{
     border: none;
     color: #fff;
     border-radius: 3px;
-    transition: 0.2s ;
+    transition: 0.2s;
 }
 button:hover{
     transition: 0.2s;

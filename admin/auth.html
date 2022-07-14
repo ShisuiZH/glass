@@ -20,54 +20,60 @@
                 </div>
                 <div class="sections">
                     <div class="auth on">
-                        <div class="email">
-                            <div class="icon1">
-                                <i class="fas fa-envelope"></i>
+                        <form id="login-admin">
+                            <div class="email">
+                                <div class="icon1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <input id="login-email" type="email" placeholder="E-mail">
                             </div>
-                            <input type="email" placeholder="E-mail">
-                        </div>
-                        <div class="password">
-                            <div class="icon2">
-                                <i class="fas fa-key"></i>
+                            <div class="password">
+                                <div class="icon2">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <input id="login-password" type="password" placeholder="Пароль">
+                                <div class="hide">
+                                    <i id="show1" class="fas fa-eye"></i>
+                                    <i id="hide1" style="display: none;" class="fas fa-eye-slash"></i>
+                                </div>
                             </div>
-                            <input type="password" placeholder="Пароль">
-                            <div class="hide">
-                                <i class="fas fa-eye"></i>
+                            <div class="remember">
+                                <input type="checkbox" id="rememberMe">
+                                <p>Запомнить меня</p>
                             </div>
-                        </div>
-                        <div class="remember">
-                            <input type="checkbox">
-                            <p>Запомнить меня</p>
-                        </div>
-                        <div class="sign">
-                            <button>Войти</button>
-                        </div>
+                            <div class="sign">
+                                <button onclick="signInWithEmailPassword(); return false;">Войти</button>
+                            </div>
+                        </form>
                       </div>
                     <div class="registration off">
-                        <div class="nickname">
-                            <div class="icon0">
-                                <i class="fas fa-user"></i>
+                        <form id="registration-admin">
+                            <div class="nickname">
+                                <div class="icon0">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <input id="reg-name" type="text" placeholder="Имя пользователя">
                             </div>
-                            <input type="text" placeholder="Имя пользователя">
-                        </div>
-                        <div class="email">
-                            <div class="icon1">
-                                <i class="fas fa-envelope"></i>
+                            <div class="email">
+                                <div class="icon1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <input id="reg-email" type="email" placeholder="E-mail">
                             </div>
-                            <input type="email" placeholder="E-mail">
-                        </div>
-                        <div class="password">
-                            <div class="icon2">
-                                <i class="fas fa-key"></i>
+                            <div class="password">
+                                <div class="icon2">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <input id="reg-password" type="password" placeholder="Пароль">
+                                <div class="hide">
+                                    <i id="show2" class="fas fa-eye"></i>
+                                    <i id="hide2" style="display: none;" class="fas fa-eye-slash"></i>
+                                </div>
                             </div>
-                            <input type="password" placeholder="Пароль">
-                            <div class="hide">
-                                <i class="fas fa-eye"></i>
+                            <div class="reg">
+                                <button onclick="signUpWithEmailPassword(); return false">Зарегистрироваться</button>
                             </div>
-                        </div>
-                        <div class="reg">
-                            <button>Зарегестрироваться</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -83,10 +89,10 @@
                         <div class="icon3">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <input type="email" placeholder="Введите свой E-mail">
+                        <input id="email-reset-password" type="email" placeholder="Введите свой E-mail">
                     </div>
                     <div class="resbutton">
-                        <button>Сохранить</button>
+                        <button onclick="resetPassword()">Сохранить</button>
                     </div>
                 </div>
             </div>
@@ -94,6 +100,11 @@
     </div>
     <script src="https://kit.fontawesome.com/8cb796bd7d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
     <script src="js/reg.js"></script>
 </body>
 </html>
