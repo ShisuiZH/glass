@@ -180,7 +180,7 @@ body{
     top: 0;
 }
 
-.section_1{
+/* .section_1{
     width: 100%;
     height: auto;
     background-color: #15171d;
@@ -238,11 +238,92 @@ body{
     background: no-repeat center/contain url(../source/glass5.jpg);
     object-fit: cover;
     transition: 0.7s;
+    filter: brightness(90%);
+    position: relative;
 }
 
 .square_1:hover{
-    /* transform: scale(1.1); */
-    filter: brightness(120%);
+    filter: brightness(110%);
+}
+
+.square_1 img{
+    width: 100%;
+    height: 100%;
+} */
+
+.section_1{
+    width: 100%;
+    height: auto;
+    background-color: #15171d;
+    position: relative;
+    
+}
+
+.section_1_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section_1_1 h2{
+    margin: 30px 0 15px 0;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.squares_2{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+    margin-bottom: 70px;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.square_2{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-direction: column;
+    height: auto;
+    padding: 40px 40px;
+    background-color: #101219;
+}
+
+.square_2 h2{
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.squares_2 span{
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.square_2:hover{
+    border-bottom: 1px solid rgba(0, 255, 170, 0.7);
+    border-image: linear-gradient(90deg, rgba(0,255,170,0.7) 15%, rgba(150,255,170,0.75) 100%);
+    border-image-slice: 1;
+}
+
+.button_t{
+    border-bottom: 1px solid rgba(0, 255, 170, 0.7);
+    background-color: #101219;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    align-self: center;
+    padding: 2px 8px 6px 8px;
+}
+
+.button_test{
+    background-color: #101219;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    align-self: center;
+    padding: 2px 8px 6px 8px;
 }
 
 .section_2{
