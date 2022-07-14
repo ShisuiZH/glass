@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body onload="gener()">
+    <form id="create-product-form">
+        <input placeholder="Категория продукта" type="text" id="category-product">
+        <input placeholder="Ширина продукта" type="text" id="width-product">
+        <input placeholder="Высота продукта" type="text" id="height-product">
+        <input placeholder="Цена продукта" type="text" id="price-product">
+        <input placeholder="Закалка продукта" type="text" id="hardening-product">
+        <input placeholder="Обработка кромки" type="text" id="edge-product">
+        <input placeholder="Фацет" type="text" id="facet-product">
+        <input placeholder="Дырка" type="text" id="hole-product">
+        <input placeholder="Вырезы" type="text" id="cutout-product">
+        <input placeholder="Пескоструйный рисунок" type="text" id="sandblasting-product">
+        <input placeholder="Гравировка" type="text" id="engraving-product">
+        <input placeholder="Покрытие пленкой" type="text" id="laminating-product">
+    </form>
+    <form id="make-admin-form">
+        <input type="email" id="email-admin-form">
+        <button onclick="createAdmin(); return false">Создать администратора</button>
+        <button onclick="createAdmin(null); return false">Удалить администратора</button>
+    </form>
+    <button onclick="createProduct()">Создать</button>
+    <button onclick="signOut()">Выход</button>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

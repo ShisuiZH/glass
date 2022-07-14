@@ -1,0 +1,309 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+button{
+    cursor: pointer;
+    background-color: #2f889a;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    transition: 0.2s ;
+}
+button:hover{
+    transition: 0.2s;
+    background-color: #419aac;
+}
+.display{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e4e4e;
+}
+.container{
+    height: auto;
+    max-width: 1200px;
+    padding: 0 15px 0 15px;
+    display: flex;
+    justify-content: center;
+}
+@media (max-width:570px){
+    .container{
+        max-width: 320px;
+    }
+    .modal_window{
+        max-width: 280px;
+    }
+    .hide i{
+        font-size: 10px;
+    }
+    
+}
+
+.content{
+    width: 550px;
+    height: 420px;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.tabs{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+}
+.tab1{
+    height: 70px;
+    width: 50%;
+    border-radius: 3px;
+    border-radius: 3px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tab2{
+    height: 70px;
+    width: 50%;
+    border-radius: 0 3px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sections{
+    height: 330px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sections input{
+    outline: none;
+}
+.auth{
+    height: 300px;
+    width: 90%;
+}
+.auth div{
+    display: flex;
+    align-items: center;
+}
+.email{
+    height: 75px;
+    justify-content: center;
+}
+.email input{
+    width: 90%;
+    height: 45px;
+    padding-left: 10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 0 3px 3px 0;
+    border-left: none;
+}
+.icon1{
+    width: 10%;
+    height: 45px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 3px 0 0 3px;
+    display: flex;
+    justify-content: center;
+}
+.icon1 i{
+    color: rgb(235, 235, 235);
+}
+.password{
+    height: 75px;
+    justify-content: center;
+}
+.password input{
+    width: 80%;
+    height: 45px;
+    padding-left: 10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 0 0 0 0;
+    border-left: none;
+}
+.hide{
+    width: 10%;
+    height: 45px;
+    border: 1px solid rgb(235, 235, 235);
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    color: rgb(149, 149, 149);
+}
+
+.icon2{
+    width: 10%;
+    height: 45px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 3px 0 0 3px;
+    display: flex;
+    justify-content: center;
+}
+.icon2 i{
+    color: rgb(235, 235, 235);
+}
+.remember{
+    height: 75px;
+    justify-content: baseline;
+}
+.remember p{
+    margin-left: 5px;
+    font-size: 14px;
+    color: rgb(140 144 142);
+}
+.sign{
+    height: 75px;
+    justify-content: center;
+}
+.sign button{
+    width: 100%;
+    height: 45px;
+}
+
+.resetpass p{
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(231, 231, 231);
+    transition: all 0.2s;
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: calc(50% - 240px);
+}
+.resetpass p:hover{
+    transition: all 0.2s;
+    color: rgb(184, 184, 184);
+}
+.registration{
+    height: 300px;
+    width: 90%;
+}
+.registration div{
+    display: flex;
+    align-items: center;
+}
+.icon0{
+    width: 10%;
+    height: 45px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 3px 0 0 3px;
+    display: flex;
+    justify-content: center;
+}
+.icon0 i{
+    color: rgb(235, 235, 235);
+}
+.nickname{
+    height: 75px;
+    justify-content: center;
+}
+.nickname input{
+    width: 90%;
+    height: 45px;
+    padding-left: 10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 0 3px 3px 0;
+    border-left: none;
+}
+.reg{
+    height: 75px;
+    justify-content: center;
+}
+.reg button{
+    width: 100%;
+    height: 45px;
+}
+.mod{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background:rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: none; */
+}
+.modal_window{
+    position: absolute;
+    height: 400px;
+    width: 450px;
+    background-color: #fff;
+    border-radius: 3px;
+    justify-content: center;
+    display: flex;
+}
+.modal_content{
+    width: 450px;
+    padding: 0 10px;
+    height: 400px;
+}
+
+.text1{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid rgb(235, 235, 235);
+}
+.text1 p{
+    font-size: 18px;
+}
+.resmail{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.icon3{
+    width: 10%;
+    height: 45px;
+    border: 2px solid rgb(235, 235, 235);
+    border-radius: 3px 0 0 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(235, 235, 235);
+    border-right: none;
+}
+.resmail input{
+    height: 45px;
+    width: 90%;
+    outline: navajowhite;
+    border: 2px  solid rgb(235, 235, 235);
+    border-radius: 0 3px 3px 0;
+    padding-left: 10px;
+}
+.resbutton{
+    height: 190px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+.resbutton button{
+    height: 40px;
+    width: 90px;
+}
+.on{
+    display: block;
+}
+.off{
+    display: none;
+}
+.active{
+    background-color: #fff;
+}
+.not{
+    
+    background-color: #eaeaea;
+}
