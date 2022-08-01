@@ -147,6 +147,38 @@ body{
     right: 0;
 }
 
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 0;
+    top: 70px;
+    height: calc(100vh - 70px);
+}
+
+.header_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.header_text_1{
+    width: 90%;
+    margin: 0 auto;
+    font-size: 55px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.header_text_2{
+    width: 84%;
+    margin: 30px auto;
+    font-size: 25px;
+    text-align: center;
+}
+
 .video{
     max-height: 100vh;
     overflow: hidden;
@@ -174,7 +206,7 @@ body{
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+    z-index: -1;
     position: absolute;
     left: 0;
     top: 0;
