@@ -346,15 +346,51 @@ footer{
     position: relative;
 }
 
-.section_4_2{
+.section_4_1{
+    padding: 40px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.section_4_1 h2{
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.section_4_1_1{
     display: flex;
     justify-content: center;
-    padding-bottom: 40px;
+}
+
+.section_4_1_1 ul li{
+    list-style: none;
+    padding: 4px 0;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.section_4_1_2 i{
+    padding: 2px 6px;
+    font-size: 22px;
 }
 
 .section_4_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.8);
+}
+
+.section_4_2 div{
+    display: flex;
+    padding: 0 5px; 
+    font-size: 22px;
+}
+
+.section_4_2 i{
+    padding: 6px;
 }
 
 ::-webkit-scrollbar{
