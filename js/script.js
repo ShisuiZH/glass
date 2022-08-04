@@ -7,41 +7,41 @@ $('a[href*="#"]').click(function() {
 });
 
 
-$(document).ready(function(){
-    $('.slider').slick({
-        infinite: true,
-        speed: 450,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        dots: true,
-        arrows: false,
-        responsive: [
-            {
-              breakpoint: 1224,
-              settings: {
+// $(document).ready(function(){
+//     $('.slider_2').slick({
+//         infinite: true,
+//         speed: 450,
+//         slidesToShow: 3,
+//         slidesToScroll: 1,
+//         dots: true,
+//         arrows: false,
+//         responsive: [
+//             {
+//               breakpoint: 1224,
+//               settings: {
                 
-              }
-            },
-            {
-              breakpoint: 850,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-              }
-            },
-            {
-              breakpoint: 780,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              }
-            }
-          ],
-    });
-});
+//               }
+//             },
+//             {
+//               breakpoint: 850,
+//               settings: {
+//                 slidesToShow: 2,
+//                 slidesToScroll: 2,
+//               }
+//             },
+//             {
+//               breakpoint: 780,
+//               settings: {
+//                 slidesToShow: 1,
+//                 slidesToScroll: 1,
+//               }
+//             }
+//           ],
+//     });
+// });
 
 $(document).ready(function(){
-  $('.slider_2').slick({
+  $('.slider').slick({
       infinite: true,
       speed: 450,
       slidesToShow: 2,
