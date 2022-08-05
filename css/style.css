@@ -235,11 +235,28 @@ header{
 
 .squares_1{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 3fr);
     margin-bottom: 70px;
     gap: 30px;
     margin-top: 20px;
+    grid-template-areas: "sqr_1 sqr_1 sqr_2 sqr_3" "sqr_1 sqr_1 sqr_4 sqr_5";
+}
+.sqr_1{
+    grid-area: sqr_1;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
+}
+.sqr_2{
+    grid-area: sqr_2;
+}
+.sqr_3{
+    grid-area: sqr_3;
+}
+.sqr_4{
+    grid-area: sqr_4;
+}
+.sqr_5{
+    grid-area: sqr_5;
 }
 
 .square_1{
