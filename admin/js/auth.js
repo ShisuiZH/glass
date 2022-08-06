@@ -17,6 +17,9 @@ const db = firebase.firestore();
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     personalCabinet(user)
+    db.collection('products').onSnapshot(snapshot => {
+      showProducts(snapshot.docs);
+    })
   }else{
     personalCabinet()
   }
@@ -52,6 +55,7 @@ function signInWithEmailPassword() {
   let loginAdminForm = document.getElementById("login-admin");
   const email = loginAdminForm['login-email'].value;
   const password = loginAdminForm['login-password'].value;
+  const status = document.querySelector(".status")
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     console.log("Загрузка...")
@@ -59,9 +63,11 @@ function signInWithEmailPassword() {
       db.collection("users").doc(userCredential.user.uid).get().then(snapshot=>{
         if(snapshot.data().isAdmin == true && userCredential.user.emailVerified == true){
           console.log("Вы администратор")
-          window.location.href="adminpanel.html"
+          window.location.href="../personal.html"
         }else{
           console.log("Вы пользователь")
+          window.location.href="../personal.html"
+
           console.log(emailVerified)
         }
       })
@@ -84,7 +90,7 @@ function signOut() {
   // [START auth_sign_out]
   firebase.auth().signOut().then(() => {
     console.log("Выход")
-    window.location.href="auth.html"
+    window.location.href="../index.html"
   }).catch((error) => {
     // An error happened.
   });
@@ -119,3 +125,30 @@ $('.hide').on('click', function(){
     $("#show2").show();
 	}
 })
+
+//                             REMEMBER ME
+const rmCheck = document.getElementById("rememberMe"),
+    emailInput = document.getElementById("login-email"),
+    passwordInput = document.getElementById("login-password");
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+  rmCheck.setAttribute("checked", "checked");
+  emailInput.value = localStorage.username;
+  passwordInput.value = localStorage.password;
+} else {
+  rmCheck.removeAttribute("checked");
+  emailInput.value = "";
+  passwordInput.value = "";
+}
+
+function lsRememberMe() {
+  if (rmCheck.checked && emailInput.value !== "") {
+    localStorage.username = emailInput.value;
+    localStorage.password = passwordInput.value;
+    localStorage.checkbox = rmCheck.value;
+  } else {
+    localStorage.username = "";
+    localStorage.password = "";
+    localStorage.checkbox = "";
+  }
+}
