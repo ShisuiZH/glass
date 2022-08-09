@@ -244,19 +244,28 @@ header{
 }
 .sqr_1{
     grid-area: sqr_1;
-    /* background: url(../source/glass1.webp) no-repeat center/cover; */
+    background: url(../source/glass1.webp) no-repeat center/cover;
+    filter: brightness(80%);
 }
 .sqr_2{
     grid-area: sqr_2;
+    background: url(../source/glass1.webp) no-repeat center/cover;
+    filter: brightness(80%);
 }
 .sqr_3{
     grid-area: sqr_3;
+    background: url(../source/glass1.webp) no-repeat center/cover;
+    filter: brightness(80%);
 }
 .sqr_4{
     grid-area: sqr_4;
+    background: url(../source/glass1.webp) no-repeat center/cover;
+    filter: brightness(80%);
 }
 .sqr_5{
     grid-area: sqr_5;
+    background: url(../source/glass1.webp) no-repeat center/cover;
+    filter: brightness(80%);
 }
 
 .square_1{
@@ -267,6 +276,7 @@ header{
     height: auto;
     padding: 40px 40px;
     background-color: #101219;
+    transition: all 0.8s;
 }
 
 .square_1 h2{
@@ -280,9 +290,7 @@ header{
 }
 
 .square_1:hover{
-    border-bottom: 1px solid rgba(0, 255, 170, 0.7);
-    border-image: linear-gradient(90deg, rgba(0,255,170,0.7) 15%, rgba(150,255,170,0.75) 100%);
-    border-image-slice: 1;
+    filter: brightness(100%);
 }
 
 .button_2{
