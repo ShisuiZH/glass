@@ -15,13 +15,19 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 //                                      SIGNUP / SIGNOUT
 firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    personalCabinet(user)
+  try{
+    if (user) {
     db.collection('products').onSnapshot(snapshot => {
       showProducts(snapshot.docs);
     })
+    db.collection('orders').onSnapshot(snapshot => {
+      showCalculator(snapshot.docs);
+    })
+    personalCabinet(user)
+    trackOrder(user)
   }else{
     personalCabinet()
+  }}catch(error){
   }
 })
 function signUpWithEmailPassword() {
@@ -73,9 +79,7 @@ function signInWithEmailPassword() {
       })
     })
     .catch((error) => {
-      var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage)
       if(errorMessage == "There is no user record corresponding to this identifier. The user may have been deleted."){
         alert("Пользователь не найден, проверьте правильность написания email'a")
       }else if(errorMessage == "The password is invalid or the user does not have a password."){

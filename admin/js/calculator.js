@@ -625,23 +625,33 @@ function kalkulyator() {
 	document.getElementById('st_dostavka').innerHTML = st_dostavka;
 	document.getElementById('st_zamer').innerHTML = st_zamer;
 
-	let laminatingValue = document.getElementById('st_plenka').innerHTML = st_plenka;
-	let engravingValue = document.getElementById('st_gravir').innerHTML = st_gravir;
-	let sandBlastingValue = document.getElementById('st_pesok').innerHTML = st_pesok;
-	let zakalkaValue = document.getElementById('st_zakalka').innerHTML = st_zakalka;
-	let cutoutValue = document.getElementById('st_vyrez').innerHTML = st_vyrez;
-	let facetValue = document.getElementById('st_facet').innerHTML = st_facet;
-	let holeValue = document.getElementById('st_otv').innerHTML = st_otv;
-	let kromkaValue = document.getElementById('st_kromka').innerHTML = kromka;
-	let rezkaValue = document.getElementById('st_rezka').innerHTML = rezka;
-	let paymentMethod = document.getElementById('payment_method').value;
-	let lenDiv;
-	document.getElementById("view_otver").addEventListener("click", function () {
-		lenDiv = 1;
-		console.log(lenDiv)
-	})
-	let totalPrice = document.getElementById('st_itogo').innerHTML = st_dostavka + st_zamer + rezka + st_plenka + st_gravir + st_pesok + st_zakalka + st_vyrez + st_facet + kromka + st_otv;
 	document.querySelector(".mainButton").addEventListener("click", function () {
+		let laminatingValue = document.getElementById('st_plenka').innerHTML = st_plenka;
+		let engravingValue = document.getElementById('st_gravir').innerHTML = st_gravir;
+		let engravingMeter = document.getElementById("n_gravir").value
+		let sandBlastingValue = document.getElementById('st_pesok').innerHTML = st_pesok;
+		let zakalkaValue = document.getElementById('st_zakalka').innerHTML = st_zakalka;
+		let cutoutValue = document.getElementById('st_vyrez').innerHTML = st_vyrez;
+		let insideCutout = document.getElementById("n_vnesh").value
+		let outsideCutout = document.getElementById("n_vnutr").value
+		let facetValue = document.getElementById('st_facet').innerHTML = st_facet;
+		let firstSide = document.getElementById("facet1").value;
+		let secondSide = document.getElementById("facet2").value;
+		let holeValue = document.getElementById('st_otv').innerHTML = st_otv;
+		let holeCount =  document.getElementById("diam_0").value
+		let holeDiam =  document.getElementById("count_0").value
+		let kromkaValue = document.getElementById('st_kromka').innerHTML = kromka;
+		let rezkaValue = document.getElementById('st_rezka').innerHTML = rezka;
+		let paymentMethod = document.getElementById('payment_method').value;
+		let comment = document.getElementById("comment_for_order").value
+		let date = new Date().toLocaleDateString() + " время "+ new Date().toLocaleTimeString()
+		let iD = Math.floor(Math.random() * 1000000)
+		let lenDiv;
+		document.getElementById("view_otver").addEventListener("click", function () {
+			lenDiv = 1;
+			console.log(lenDiv)
+		})
+		let totalPrice = document.getElementById('st_itogo').innerHTML = st_dostavka + st_zamer + rezka + st_plenka + st_gravir + st_pesok + st_zakalka + st_vyrez + st_facet + kromka + st_otv;
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				let childs
@@ -672,7 +682,7 @@ function kalkulyator() {
 						laminatingType = "Нет";
 					};
 				}
-				let deliveryType
+				let deliveryType, delivery
 				if(id_dostavka == 1){
 					deliveryType = "Нур-Султан";
 					delivery = "Доставка курьером"
@@ -680,9 +690,8 @@ function kalkulyator() {
 					deliveryType = "Самовывоз";
 					delivery = "Самовывоз"
 				}
-				let uid = user.uid;
-
-				db.collection('orders').doc(uid).set({
+				db.collection('orders').doc(user.email).collection("user_order").doc('a').set({
+					id: iD,
 					category: childs,
 					width: a,
 					height: b,
@@ -692,28 +701,29 @@ function kalkulyator() {
 					edgeTreatment: kromkaValue,
 					edgeTreatmentType: typeKromka,
 					facet: facetValue,
-					firstSide: document.getElementById("facet1").value,
-					secondSide: document.getElementById("facet2").value,
+					firstSide: firstSide,
+					secondSide: secondSide,
 					hole: holeValue,
-					holeCount: document.getElementById("diam_0").value,
-					holeDiametr: document.getElementById("count_0").value,
+					holeCount: holeCount,
+					holeDiametr: holeDiam,	
 					cutout: cutoutValue,
-					insideCutout: document.getElementById("n_vnesh").value,
-					outsideCutout: document.getElementById("n_vnutr").value,
+					insideCutout: insideCutout,
+					outsideCutout: outsideCutout,
 					sandBlasting: sandBlastingValue,
 					sandBlastingType: sandBlastingType,
 					engraving: engravingValue,
-					engravingMeter: document.getElementById("n_gravir").value,
+					engravingMeter: engravingMeter,
 					laminating: laminatingValue,
 					laminatingType: laminatingType,
 					oplata: paymentMethod,
 					totalPrice: totalPrice,
 					delivery:delivery,
 					deliveryType: deliveryType,
-					comment: document.getElementById("comment_for_order").value,
-					date: new Date().toLocaleDateString() + " время "+ new Date().toLocaleTimeString(),
+					comment: comment,
+					date: date,
 					email: user.email,
-				}).then(() => {
+				})
+				.then(() => {
 					console.log('Document successfully written!');
 
 				});
@@ -726,8 +736,8 @@ function kalkulyator() {
 
 function makePdfOrder(){
 	firebase.auth().onAuthStateChanged((user) => {
-		db.collection("orders").doc(user.uid).get().then(snapshot => {
-			let data = snapshot.data()
+		db.collection("orders").doc(user.email).collection("user_order").get().then(snapshot => {
+			let data = snapshot.docs[index].data();
 			var dd = {
 				content: [
 					"Категория: " + data.category,
@@ -762,9 +772,8 @@ function makePdfOrder(){
 					"Дата заказа: " + data.date,
 					"Заказал: "+data.email
 				]
-
 			}
-			pdfMake.createPdf(dd).download('заказ.pdf');
+			// pdfMake.createPdf(dd).download('заказ.pdf');
 		})
 	})
 }
