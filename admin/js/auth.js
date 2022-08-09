@@ -23,8 +23,10 @@ firebase.auth().onAuthStateChanged((user) => {
     db.collection('orders').onSnapshot(snapshot => {
       showCalculator(snapshot.docs);
     })
+    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
+      trackOrder(snapshot.docs);
+    })
     personalCabinet(user)
-    trackOrder(user)
   }else{
     personalCabinet()
   }}catch(error){

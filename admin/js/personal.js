@@ -169,22 +169,41 @@ function showProducts(data) {
 }
 //                                  END ADD PRODUCTS
 //                                  TRACK ORDER
-function trackOrder(uid) {
+function trackOrder(data) {
     let ordersTable = document.querySelector(".section1_2")
-    db.collection("orders").doc(uid.email).collection("user_order").get().then(snapshot => {
         let html = '';
-        snapshot.docs.forEach(function callback(doc, index) {
+        data.forEach(function callback(doc, index) {
             const list = `
-            <div class="section1_2_1 a${index}">${doc.data().id}</div>
-            <div class="section1_2_2 a${index}">${doc.data().date}</div>
-            <div class="section1_2_3 a${index}">${doc.data().deliveryStatus}</div>
-            <div class="section1_2_4 a${index}">${doc.data().totalPrice}</div>
+            <div class="order${index}">
+            <div style="width: 20%;height: 50px;display: flex;align-items: center;
+            justify-content: baseline;" class="section1_2_1 a">${doc.data().id}</div>
+
+            <div style="width: 20%;height: 50px;display: flex;align-items: center;
+            justify-content: baseline;" class="section1_2_2 a">${doc.data().date}</div>
+
+            <div style="width: 20%;height: 50px;display: flex;align-items: center;
+            justify-content: baseline;" class="section1_2_3 a">${doc.data().deliveryStatus}</div>
+
+            <div style="width: 20%;height: 50px;display: flex;align-items: center;
+            justify-content: baseline;" class="section1_2_4 a">${doc.data().totalPrice}</div>
+
             <button id="btnd${index}">Удалить</button>
+            </div>
             `
             html += list
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    document.querySelector(".order" + index).addEventListener('click', (e) => {
+                        if (e.target.id == "btnd" + index) {
+                            db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).delete().then(() => {
+                                console.log("Заказ удален")
+                            })
+                        }
+                    })
+                }
+            })
         })
         ordersTable.innerHTML = html
-    })
 }
 
 trackOrder()
