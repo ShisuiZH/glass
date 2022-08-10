@@ -171,12 +171,15 @@ function showProducts(data) {
 //                                  TRACK ORDER
 function trackOrder(data) {
     let ordersTable = document.querySelector(".section1_2")
-        let html = '';
-        data.forEach(function callback(doc, index) {
-            const list = `
+    let orderTracking = document.querySelector(".section2")
+    let html = '';
+    data.forEach(function callback(doc, index) {
+        const list = `
             <div class="order${index}">
+            <button id="btn${index}">
             <div style="width: 20%;height: 50px;display: flex;align-items: center;
             justify-content: baseline;" class="section1_2_1 a">${doc.data().id}</div>
+            </button>
 
             <div style="width: 20%;height: 50px;display: flex;align-items: center;
             justify-content: baseline;" class="section1_2_2 a">${doc.data().date}</div>
@@ -190,21 +193,52 @@ function trackOrder(data) {
             <button id="btnd${index}">Удалить</button>
             </div>
             `
-            html += list
-            firebase.auth().onAuthStateChanged((user) => {
-                if (user) {
-                    document.querySelector(".order" + index).addEventListener('click', (e) => {
-                        if (e.target.id == "btnd" + index) {
-                            db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).delete().then(() => {
-                                console.log("Заказ удален")
-                            })
+        html += list
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.querySelector(".order" + index).addEventListener('click', (e) => {
+                    if (e.target.id == "btnd" + index) {
+                        db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).delete().then(() => {
+                            console.log("Заказ удален")
+                        })
+                    }
+                })
+                document.getElementById("btn" + index).addEventListener('click', (e) => {
+                    db.collection("orders").doc(user.email).collection("user_order").get().then((data) => {
+                        orderTracking.children[0].removeAttribute("style")
+                        orderTracking.children[1].removeAttribute("style")
+                        switch (data.docs[index].data().deliveryStatus) {
+                            case "Подтвержден":
+                                orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
+                                break;
+                            case "Комплектуется":
+                                orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
+                                break
+                            case "Отправка":
+                                orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[2].setAttribute("style", "background-color: green;")
+                                break
+                            case "Доставка":
+                                orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[2].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[3].setAttribute("style", "background-color: green;")
+                            case "Доставлен":
+                                orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[2].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[3].setAttribute("style", "background-color: green;")
+                                orderTracking.children[0].children[4].setAttribute("style", "background-color: green;")
                         }
+                    }).catch(() => {
+                        console.log("Заказов нет")
                     })
-                }
-            })
+                })
+            }
         })
-        ordersTable.innerHTML = html
+    })
+    ordersTable.innerHTML = html
 }
-
-trackOrder()
 //                                  END TRACK ORDER

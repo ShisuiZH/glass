@@ -610,7 +610,7 @@ function kalkulyator() {
 		document.getElementById('tr_dostavka1').style.display = "";
 		document.getElementById('tr_dostavka2').style.display = "";
 		var id_dostavka = getCheckedValue(document.forms['calc'].elements['dostavka10']);
-		if (id_dostavka == 1) { st_dostavka = 2500; document.getElementById('nur-sultan').style.display = "";  }
+		if (id_dostavka == 1) { st_dostavka = 2500; document.getElementById('nur-sultan').style.display = ""; }
 		else if (id_dostavka == 2) {
 			document.getElementById('nur-sultan').style.display = "none";
 		}
@@ -643,33 +643,12 @@ function kalkulyator() {
 	let outsideCutout = document.getElementById("n_vnutr").value
 	let engravingMeter = document.getElementById("n_gravir").value
 	let comment = document.getElementById("comment_for_order").value
-	let date = new Date().toLocaleDateString() + " время "+ new Date().toLocaleTimeString()
+	let date = new Date().toLocaleDateString() + " время " + new Date().toLocaleTimeString()
 	let id = Math.round(Math.random() * 1000000);
 	let lenDiv;
 	document.getElementById("view_otver").addEventListener("click", function () {
 		lenDiv = 1;
 	})
-	console.log(laminatingValue)
-	console.log(engravingValue)
-	console.log(sandBlastingValue)
-	console.log(zakalkaValue)
-	console.log(cutoutValue)
-	console.log(facetValue)
-	console.log(holeValue)
-	console.log(kromkaValue)
-	console.log(rezkaValue)
-	console.log(paymentMethod)
-	console.log(firstSide)
-	console.log(secondSide)
-	console.log(holeCount)
-	console.log(holeDiameter)
-	console.log(insideCutout)
-	console.log(outsideCutout)
-	console.log(engravingMeter)
-	console.log(comment)
-	console.log(date)
-	console.log(id)
-	console.log(lenDiv)
 	let totalPrice = document.getElementById('st_itogo').innerHTML = st_dostavka + st_zamer + rezka + st_plenka + st_gravir + st_pesok + st_zakalka + st_vyrez + st_facet + kromka + st_otv;
 	document.querySelector(".mainButton").addEventListener("click", function () {
 		firebase.auth().onAuthStateChanged((user) => {
@@ -703,13 +682,16 @@ function kalkulyator() {
 					};
 				}
 				let deliveryType
-				if(id_dostavka == 1){
+				if (id_dostavka == 1) {
 					deliveryType = "Нур-Султан";
 					delivery = "Доставка курьером"
-				}else{
+				} else {
 					deliveryType = "Самовывоз";
 					delivery = "Самовывоз"
 				}
+
+
+				// ДОДЕЛАТЬ (записывается больше 1 заказов)
 				db.collection('orders').doc(user.email).collection("user_order").add({
 					id: id,
 					category: childs,
@@ -737,14 +719,15 @@ function kalkulyator() {
 					laminatingType: laminatingType,
 					oplata: paymentMethod,
 					totalPrice: totalPrice,
-					delivery:delivery,
+					delivery: delivery,
 					deliveryType: deliveryType,
 					comment: comment,
 					date: date,
 					email: user.email,
-				}).then(() => {
-					console.log('Document successfully written!');
-
+				}).then((output) => {
+					let finalOrder = {
+						"id": id, "category": childs, "width": a, "height": b, "zakalka": zakalkaValue, "rezka": rezkaValue, "quantity": n, "edgeTreatment": kromkaValue, "edgeTreatmentType": typeKromka, "facet": facetValue, "firstSide": firstSide, "secondSide": secondSide, "hole": holeValue, "holeCount": holeCount, "holeDiametr": holeDiameter, "cutout": cutoutValue, "insideCutout": insideCutout, "outsideCutout": outsideCutout, "sandBlasting": sandBlastingValue, "sandBlastingType": sandBlastingType, "engraving": engravingValue, "engravingMeter": engravingMeter, "laminating": laminatingValue, "laminatingType": laminatingType, "oplata": paymentMethod, "totalPrice": totalPrice, "delivery": delivery, "deliveryType": deliveryType, "comment": comment, "date": date, "email": user.email,
+					}
 				});
 			} else {
 				// User is signed ou
@@ -753,7 +736,7 @@ function kalkulyator() {
 	});
 };
 
-function makePdfOrder(){
+function makePdfOrder() {
 	firebase.auth().onAuthStateChanged((user) => {
 		db.collection("orders").doc(user.email).collection("user_order").get().then(snapshot => {
 			let data = snapshot.docs.map(doc => doc.data());
@@ -789,7 +772,7 @@ function makePdfOrder(){
 					"Куда: " + data.deliveryType,
 					"Комментарий: " + data.comment,
 					"Дата заказа: " + data.date,
-					"Заказал: "+data.email
+					"Заказал: " + data.email
 				]
 
 			}

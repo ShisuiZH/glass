@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged((user) => {
     db.collection('products').onSnapshot(snapshot => {
       showProducts(snapshot.docs);
     })
-    db.collection('orders').onSnapshot(snapshot => {
+    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
       showCalculator(snapshot.docs);
     })
     db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {

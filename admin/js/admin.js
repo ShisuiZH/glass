@@ -82,13 +82,13 @@ function showCalculator(data) {
                 if (user) {
                     document.getElementById("btn" + index).addEventListener('click', (e) => {
                         console.log(doc.id)
-                        db.collection("orders").doc(doc.id).delete().then(() => {
+                        db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).delete().then(() => {
                             console.log("Заказ завершен");
                         })
                     })
                     document.getElementById("delivery-status" + index).addEventListener('click', (e) => {
                         console.log(document.getElementById("delivery-status" + index).value)
-                        db.collection("orders").doc(doc.id).update({
+                        db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).update({
                             deliveryStatus: document.getElementById("delivery-status" + index).value
                         })
                     })
