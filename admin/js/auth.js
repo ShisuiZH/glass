@@ -17,11 +17,9 @@ const db = firebase.firestore();
 firebase.auth().onAuthStateChanged((user) => {
   try{
     if (user) {
+    showCalculator()
     db.collection('products').onSnapshot(snapshot => {
       showProducts(snapshot.docs);
-    })
-    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
-      showCalculator(snapshot.docs);
     })
     db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
       trackOrder(snapshot.docs);

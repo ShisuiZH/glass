@@ -162,7 +162,6 @@ function showProducts(data) {
             })
         })
         products.innerHTML = html
-
     } catch (e) {
         console.log(e)
     }
@@ -205,8 +204,17 @@ function trackOrder(data) {
                 })
                 document.getElementById("btn" + index).addEventListener('click', (e) => {
                     db.collection("orders").doc(user.email).collection("user_order").get().then((data) => {
-                        orderTracking.children[0].removeAttribute("style")
-                        orderTracking.children[1].removeAttribute("style")
+                        if (orderTracking.children[0].style.display == "none" && orderTracking.children[1].style.display == "none") {
+                            orderTracking.children[0].removeAttribute("style")
+                            orderTracking.children[1].removeAttribute("style")
+                            for (let index = 0; index < orderTracking.children[0].children.length; index++) {
+                                orderTracking.children[0].children[index].removeAttribute("style")                          
+                            }
+                        }else{
+                            orderTracking.children[0].style.display = "none"
+                            orderTracking.children[1].style.display = "none"
+                        }
+
                         switch (data.docs[index].data().deliveryStatus) {
                             case "Подтвержден":
                                 orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
@@ -225,12 +233,14 @@ function trackOrder(data) {
                                 orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[2].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[3].setAttribute("style", "background-color: green;")
+                                break
                             case "Доставлен":
                                 orderTracking.children[0].children[0].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[1].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[2].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[3].setAttribute("style", "background-color: green;")
                                 orderTracking.children[0].children[4].setAttribute("style", "background-color: green;")
+                                break
                         }
                     }).catch(() => {
                         console.log("Заказов нет")

@@ -31,6 +31,7 @@ function createAdmin(cancelAd) {
 //                                  END ADD PRODUCTS
 //                                  START SHOW CALCULATOR ORDERS
 function showCalculator(data) {
+    // доделать
     let userOrders = document.querySelector(".user_orders");
     try {
         let html = '';
@@ -87,7 +88,6 @@ function showCalculator(data) {
                         })
                     })
                     document.getElementById("delivery-status" + index).addEventListener('click', (e) => {
-                        console.log(document.getElementById("delivery-status" + index).value)
                         db.collection("orders").doc(user.email).collection("user_order").doc(doc.id).update({
                             deliveryStatus: document.getElementById("delivery-status" + index).value
                         })
