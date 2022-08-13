@@ -244,27 +244,27 @@ header{
 }
 .sqr_1{
     grid-area: sqr_1;
-    background: url(../source/glass1.webp) no-repeat center/cover;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
     filter: brightness(80%);
 }
 .sqr_2{
     grid-area: sqr_2;
-    background: url(../source/glass1.webp) no-repeat center/cover;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
     filter: brightness(80%);
 }
 .sqr_3{
     grid-area: sqr_3;
-    background: url(../source/glass1.webp) no-repeat center/cover;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
     filter: brightness(80%);
 }
 .sqr_4{
     grid-area: sqr_4;
-    background: url(../source/glass1.webp) no-repeat center/cover;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
     filter: brightness(80%);
 }
 .sqr_5{
     grid-area: sqr_5;
-    background: url(../source/glass1.webp) no-repeat center/cover;
+    /* background: url(../source/glass1.webp) no-repeat center/cover; */
     filter: brightness(80%);
 }
 
