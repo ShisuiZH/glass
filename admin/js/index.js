@@ -6,11 +6,13 @@ function personalCabinet(user) {
 
 //                                  START DISPLAY MAIN PAGE
 class DisplayMainPage {
-    constructor(header, text, image) {
+    constructor(header, text) {
         this.header = header;
         this.text = text;
-        this.image = image;
     }
+}
+//                                      ''' SECTION 1 '''
+class Section1 extends DisplayMainPage {
     section1() {
         db.collection("mainPage").doc("section1").onSnapshot(doc => {
             let html = '';
@@ -23,8 +25,33 @@ class DisplayMainPage {
         })
     }
 }
-//                                      ''' SECTION 1 '''
 let section1 = document.querySelector(".header_content")
-let displayMainPage = new DisplayMainPage()
-displayMainPage.section1()
+let section1_ = new Section1()
+section1_.section1()
 //                                      ''' SECTION 2 '''
+class Section2 extends DisplayMainPage {
+    section2() {
+        db.collection("mainPage").doc("section2").collection("services").onSnapshot(doc => {
+            let html = '';
+            doc.forEach(doc => {
+                let section = `
+                <div class="square_1">
+                            <div>
+                                <h2>${doc.data().header}</h2>
+                                <span>
+                                ${doc.data().text}
+                                </span>
+                            </div>
+                            
+                            <button class="button_2">Подробнее</button>
+                </div>
+                    `
+                html += section
+            });
+            section2.innerHTML = html
+        })
+    }
+}
+let section2 = document.querySelector(".squares_1")
+let section2_ = new Section2()
+section2_.section2()
