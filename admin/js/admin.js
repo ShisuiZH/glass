@@ -75,9 +75,10 @@ function showCalculator(data) {
             <option value="Доставка">Доставка</option>
             <option value="Доставлен">Доставлен</option>
             </select>
-            <p>${doc.data().deliveryStatus}</p>
+            <p id="deliveryStatus">${doc.data().deliveryStatus}</p>
             </div>
             `
+
             html += calcOrders;
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
@@ -184,3 +185,78 @@ function showProducts(data) {
     }
 }
 //                                  END ADD PRODUCTS
+//                                  START EDIT MAIN PAGE
+class EditMainPage {
+    constructor(header, text) {
+        this.header = header;
+        this.text = text;
+    }
+
+}
+class Section1 extends EditMainPage {
+    addService() {
+        db.collection("mainPage").doc("section1").set({
+            header: this.header,
+            text: this.text,
+        }).then(() => {
+            console.log("Секция 1 обновлена")
+        })
+    }
+}
+//                                      ''' SECTION 1 '''
+let editSection1Form = document.getElementById("section1-form")
+db.collection("mainPage").doc("section1").get().then((doc) => {
+    editSection1Form.children[0].value = doc.data().header;
+    editSection1Form.children[1].value = doc.data().text;
+})
+editSection1Form.children[2].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section1 = new Section1(editSection1Form.children[0].value, editSection1Form.children[1].value)
+    section1.addService()
+})
+
+//                                      ''' SECTION 2 '''
+let section2 = document.querySelector(".section2")
+function renderSection2(data) {
+    let html = '';
+    data.forEach(function callback(doc, index) {
+        const list = `<div style="border: 5px solid;" class="section2${index}">
+                <input value="${doc.data().header}">
+                <input value="${doc.data().text}">
+                <button onclick="section2DeleteService('${doc.id}')">Удалить</button>
+                <button id="btnu${index}">Редактировать</button>
+                </div>`
+        html += list
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.querySelector(".section2" + index).addEventListener('click', (e) => {
+                    if (e.target.id == "btnu" + index) {
+                        db.collection("mainPage").doc("section2").collection("services").doc(doc.id).update({
+                            header: document.querySelector(".section2" + index).children[0].value,
+                            text: document.querySelector(".section2" + index).children[1].value,
+                        }).then(() => {
+                            console.log("Услуга обновлена")
+                        })
+                    }
+                })
+            }
+        })
+    })
+    section2.children[3].innerHTML = html
+}
+function section2AddService() {
+    db.collection("mainPage").doc("section2").collection("services").add({
+        header: section2.children[0].value,
+        text: section2.children[1].value,
+    }).then(() => {
+        console.log("Услуга добавлена")
+    })
+}
+function section2DeleteService(id) {
+    db.collection("mainPage").doc("section2").collection("services").doc(id).delete().then(() => {
+        console.log("Услуга удалена")
+    }).catch(() => {
+        console.log("Ошибка")
+    })
+}
+//                                  END EDIT MAIN PAGE

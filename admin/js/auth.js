@@ -17,17 +17,23 @@ const db = firebase.firestore();
 firebase.auth().onAuthStateChanged((user) => {
   try{
     if (user) {
-    showCalculator()
     db.collection('products').onSnapshot(snapshot => {
       showProducts(snapshot.docs);
     })
     db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
       trackOrder(snapshot.docs);
     })
+    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
+      showCalculator(snapshot.docs);
+    })
+    db.collection("mainPage").doc("section2").collection("services").onSnapshot(snapshot => {
+      renderSection2(snapshot.docs);
+    })
     personalCabinet(user)
   }else{
     personalCabinet()
   }}catch(error){
+    console.log()
   }
 })
 function signUpWithEmailPassword() {

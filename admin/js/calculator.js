@@ -650,6 +650,8 @@ function kalkulyator() {
 		lenDiv = 1;
 	})
 	let totalPrice = document.getElementById('st_itogo').innerHTML = st_dostavka + st_zamer + rezka + st_plenka + st_gravir + st_pesok + st_zakalka + st_vyrez + st_facet + kromka + st_otv;
+	
+	
 	document.querySelector(".mainButton").addEventListener("click", function () {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
@@ -689,9 +691,6 @@ function kalkulyator() {
 					deliveryType = "Самовывоз";
 					delivery = "Самовывоз"
 				}
-
-
-				// ДОДЕЛАТЬ (записывается больше 1 заказов)
 				db.collection('orders').doc(user.email).collection("user_order").add({
 					id: id,
 					category: childs,
@@ -721,13 +720,15 @@ function kalkulyator() {
 					totalPrice: totalPrice,
 					delivery: delivery,
 					deliveryType: deliveryType,
+					deliveryStatus: "Обработка заказа",
 					comment: comment,
 					date: date,
 					email: user.email,
-				}).then((output) => {
+				}).then(() => {
 					let finalOrder = {
 						"id": id, "category": childs, "width": a, "height": b, "zakalka": zakalkaValue, "rezka": rezkaValue, "quantity": n, "edgeTreatment": kromkaValue, "edgeTreatmentType": typeKromka, "facet": facetValue, "firstSide": firstSide, "secondSide": secondSide, "hole": holeValue, "holeCount": holeCount, "holeDiametr": holeDiameter, "cutout": cutoutValue, "insideCutout": insideCutout, "outsideCutout": outsideCutout, "sandBlasting": sandBlastingValue, "sandBlastingType": sandBlastingType, "engraving": engravingValue, "engravingMeter": engravingMeter, "laminating": laminatingValue, "laminatingType": laminatingType, "oplata": paymentMethod, "totalPrice": totalPrice, "delivery": delivery, "deliveryType": deliveryType, "comment": comment, "date": date, "email": user.email,
 					}
+					console.log(finalOrder);
 				});
 			} else {
 				// User is signed ou

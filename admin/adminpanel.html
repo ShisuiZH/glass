@@ -375,7 +375,21 @@
     <p>Заказы</p>
     <div class="user_orders">
     </div>
-    
+    <p>Для главной страницы</p>
+    <p>Секция 1</p>
+    <form id="section1-form">
+        <input type="text" name="name" placeholder="Название">
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <button class="btn-section1">Редакитровать</button>
+    </form>
+    <p>Секция 2</p>
+    <div class="section2">
+        <input type="text" name="name" placeholder="Название">
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <button onclick="section2AddService()" class="btn-section2">Добавить услугу</button>
+        <div class="section2_services"></div>
+    </div>
+    <p>Секция 3</p>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
