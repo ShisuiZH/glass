@@ -55,3 +55,26 @@ class Section2 extends DisplayMainPage {
 let section2 = document.querySelector(".squares_1")
 let section2_ = new Section2()
 section2_.section2()
+//                                      ''' SECTION 3 '''
+class Section3 {
+    section3() {
+        db.collection("mainPage").doc("section3").collection("portfolio").onSnapshot(doc => {
+            let html = '';
+            doc.forEach(doc => {
+                let section = `
+                <div class="slide">
+                            <div>
+                                <img  src="${doc.data().image}">
+                            </div>
+                        </div>
+                    `
+                    $('.slider').slick('slickAdd', section);
+                html += section
+            });
+            section3.innerHTML = html
+        })
+    }
+}
+let section3 = document.querySelector(".slider_wrapper").children[0].children[0]
+let section3_ = new Section3()
+section3_.section3()

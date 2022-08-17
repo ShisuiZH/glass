@@ -259,4 +259,88 @@ function section2DeleteService(id) {
         console.log("Ошибка")
     })
 }
+//                                     ''' SECTION 3 '''
+class Section3 extends EditMainPage {
+    constructor(header, text, image) {
+        super(header, text)
+        this.image = image;
+    }
+    
+    addPortfolio() {
+        let image = this.image;
+        let storageRef = firebase.storage().ref(`${image.name}`);
+        storageRef.put(image).then(() => {
+            storageRef.getDownloadURL().then((url) => {
+                db.collection("mainPage").doc("section3").collection("portfolio").add({
+                    header: this.header,
+                    text: this.text,
+                    image: url,
+                }).then(() => {
+                    console.log("Портфолио добавлено")
+                })
+            })
+        })
+    }
+    deletePortfolio(id) {
+        db.collection("mainPage").doc("section3").collection("portfolio").doc(id).delete().then(() => {
+            console.log("Портфолио удалено")
+        })
+    }
+}
+let editSection3Form = document.querySelector(".section3")
+function renderSection3(data) {
+    let html = '';
+    data.forEach(function callback(doc, index) {
+        const list = `<div style="border: 5px solid;" class="section3${index}">
+                <input value="${doc.data().header}">
+                <input value="${doc.data().text}">
+                <img src="${doc.data().image}">
+                <input type="file">
+                <button onclick="section3DeletePortfolio('${doc.id}')">Удалить</button>
+                <button id="btnu${index}">Редактировать</button>
+                </div>`
+        html += list
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.querySelector(".section3" + index).addEventListener('click', (e) => {
+                    if (e.target.id == "btnu" + index) {
+                        image = document.querySelector(".section3" + index).children[3].files[0]
+                        if (image) {
+                            let storageRef = firebase.storage().ref(`${image.name}`);
+                            storageRef.put(image).then(() => {
+                                storageRef.getDownloadURL().then((url) => {
+                                    db.collection("mainPage").doc("section3").collection("portfolio").doc(doc.id).update({
+                                        header: document.querySelector(".section3" + index).children[0].value,
+                                        text: document.querySelector(".section3" + index).children[1].value,
+                                        image: url,
+                                    }).then(() => {
+                                        console.log("Портфолио обновлено")
+                                    })
+                                })
+                            })
+                        } else {
+                            db.collection("mainPage").doc("section3").collection("portfolio").doc(doc.id).update({
+                                header: document.querySelector(".section3" + index).children[0].value,
+                                text: document.querySelector(".section3" + index).children[1].value,
+                            }).then(() => {
+                                console.log("Портфолио обновлено")
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+    )
+    editSection3Form.children[4].innerHTML = html
+}
+editSection3Form.children[3].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section3 = new Section3(editSection3Form.children[0].value, editSection3Form.children[1].value, editSection3Form.children[2].files[0])
+    section3.addPortfolio()
+})
+function section3DeletePortfolio(id) {
+    let section3 = new Section3()
+    section3.deletePortfolio(id)
+}
 //                                  END EDIT MAIN PAGE

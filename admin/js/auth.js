@@ -29,6 +29,9 @@ firebase.auth().onAuthStateChanged((user) => {
     db.collection("mainPage").doc("section2").collection("services").onSnapshot(snapshot => {
       renderSection2(snapshot.docs);
     })
+    db.collection("mainPage").doc("section3").collection("portfolio").onSnapshot(snapshot => {
+      renderSection3(snapshot.docs);
+    })
     personalCabinet(user)
   }else{
     personalCabinet()
