@@ -63,7 +63,7 @@ function personalCabinet(user) {
                 })
             } else if (doc.data().isAdmin === true) {
                 privilege.innerHTML = `
-                <h3>Менеджер</h3><a href='../admin/adminpanel.html'>Перейти</a></h3>
+                <h3>Менеджер</h3><a href='../admin/adminpanel.html' target="_blank">Перейти</a></h3>
                 `
                 db.collection('users').doc(user.uid).get().then((doc) => {
                     document.querySelector(".nav_buttons").innerHTML = `${user.email} <button onclick="signOut()">Выход</button>`
