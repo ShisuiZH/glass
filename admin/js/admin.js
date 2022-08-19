@@ -328,32 +328,84 @@ function section3DeletePortfolio(id) {
     section3.deletePortfolio(id)
 }
 //                                     ''' SECTION 4 '''
-class Section4 extends Section3 {
-    constructor(header, text,image) {
-        super(image)
-        this.header = header;
-        this.text = text;
+class Section4 extends EditMainPage {
+    constructor(header, text, subheader1, subtext1, subheader2, subtext2, subheader3, subtext3, image) {
+        super(header, text)
+        this.image = image;
+        this.subheader1 = subheader1;
+        this.subtext1 = subtext1;
+        this.subheader2 = subheader2;
+        this.subtext2 = subtext2;
+        this.subheader3 = subheader3;
+        this.subtext3 = subtext3;
     }
     addImage() {
         let image = this.image;
         let storageRef = firebase.storage().ref(`${image.name}`);
         storageRef.put(image).then(() => {
             storageRef.getDownloadURL().then((url) => {
-                db.collection("mainPage").doc("section4").set({
+                db.collection("mainPage").doc("section4").update({
                     image: url,
                 }).then(() => {
-                    console.log("Услуга добавлена")
+                    console.log("Картинка добавлена")
                 })
             })
         })
     }
-    addText() {
-        db.collection("mainPage").doc("section4").set({
-            header: this.header,
-            text: this.text,
+    deleteImage() {
+        db.collection("mainPage").doc("section4").update({
+            image: "",
         }).then(() => {
-            console.log("Услуга добавлена")
+            console.log("Картинка удалена")
+        }).catch(() => {
+            console.log("Ошибка")
         })
     }
+    addText() {
+        db.collection("mainPage").doc("section4").update({
+            header: this.header,
+            subheader1: this.subheader1,
+            subheader2: this.subheader2,
+            subheader3: this.subheader3,
+            text: this.text,
+            subtext1: this.subtext1,
+            subtext2: this.subtext2,
+            subtext3: this.subtext3,
+        }).then(() => {
+            console.log("Текст добавлен")
+        })
+    }
+}
+let editSection4Form = document.querySelector(".section4")
+function renderSection4(data) {
+     editSection4Form.children[0].value = data.data().header
+    editSection4Form.children[1].value = data.data().text
+    editSection4Form.children[2].value = data.data().subheader1
+    editSection4Form.children[3].value = data.data().subtext1
+    editSection4Form.children[4].value = data.data().subheader2
+    editSection4Form.children[5].value = data.data().subtext2
+    editSection4Form.children[6].value = data.data().subheader3
+    editSection4Form.children[7].value = data.data().subtext3
+}
+editSection4Form.children[8].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section4 = new Section4(editSection4Form.children[0].value, editSection4Form.children[1].value,
+        editSection4Form.children[2].value, editSection4Form.children[3].value, editSection4Form.children[4].value,
+        editSection4Form.children[5].value, editSection4Form.children[6].value, editSection4Form.children[7].value)
+    section4.addText()
+})
+editSection4Form.children[10].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section4 = new Section4("", "", "", "", "", "", "", "", editSection4Form.children[9].files[0])
+    section4.addImage()
+})
+editSection4Form.children[11].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section4 = new Section4()
+    section4.deleteImage()
+})
+//                                     ''' SECTION 5 '''
+class Section5 extends EditMainPage {
+    
 }
 //                                  END EDIT MAIN PAGE

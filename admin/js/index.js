@@ -79,3 +79,36 @@ let section3 = document.querySelector(".slider_wrapper").children[0].children[0]
 let section3_ = new Section3()
 section3_.section3()
 //                                      ''' SECTION 4 '''
+class Section4 extends DisplayMainPage {
+    section4() {
+        db.collection("mainPage").doc("section4").onSnapshot(doc => {
+                let html = '';
+                section4Sub.children[0].children[1].innerHTML = `
+                <span>${doc.data().subheader1}</span>`
+                section4Sub.children[0].children[2].innerHTML = `
+                <div>${doc.data().subtext1}</div>`
+                section4Sub.children[1].children[1].innerHTML = `
+                <span>${doc.data().subheader2}</span>`
+                section4Sub.children[1].children[2].innerHTML = `
+                <div>${doc.data().subtext2}</div>`
+                section4Sub.children[2].children[1].innerHTML = `
+                <span>${doc.data().subheader3}</span>`
+                section4Sub.children[2].children[2].innerHTML = `
+                <div>${doc.data().subtext3}</div>`
+                section4Image.innerHTML = `<img src="${doc.data().image}">`
+                let section = `
+                    <h2>${doc.data().header}</h2>
+                    ${doc.data().text}
+                    `
+                html += section
+                section4.innerHTML = html
+            
+            
+        })
+    }
+}
+let section4 = document.querySelector(".section_3_1_2_text")
+let section4Image = document.querySelector(".section_3_1_1") 
+let section4Sub = document.querySelector(".squares_2")
+let section4_ = new Section4()
+section4_.section4()

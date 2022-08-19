@@ -32,6 +32,13 @@ firebase.auth().onAuthStateChanged((user) => {
     db.collection("mainPage").doc("section3").collection("portfolio").onSnapshot(snapshot => {
       renderSection3(snapshot.docs);
     })
+    db.collection("mainPage").doc("section4").get().then(snapshot => {
+      renderSection4(snapshot);
+    })
+    db.collection("mainPage").doc("section5").get().then(snapshot => {
+      renderSection5(snapshot);
+    })
+
     personalCabinet(user)
   }else{
     personalCabinet()
