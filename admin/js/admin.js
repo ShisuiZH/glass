@@ -405,7 +405,70 @@ editSection4Form.children[11].addEventListener('click', (e) => {
     section4.deleteImage()
 })
 //                                     ''' SECTION 5 '''
-class Section5 extends EditMainPage {
-    
+class Section5 {
+    constructor(text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12) {
+        this.text1 = text1;
+        this.text2 = text2;
+        this.text3 = text3;
+        this.text4 = text4;
+        this.text5 = text5;
+        this.text6 = text6;
+        this.text7 = text7;
+        this.text8 = text8;
+        this.text9 = text9;
+        this.text10 = text10;
+        this.text11 = text11;
+        this.text12 = text12;
+    }
+    addText() {
+        db.collection("mainPage").doc("section5").update({
+            text1: this.text1,
+            text2: this.text2,
+            text3: this.text3,
+            text4: this.text4,
+            text5: this.text5,
+            text6: this.text6,
+            text7: this.text7,
+            text8: this.text8,
+            text9: this.text9,
+            text10: this.text10,
+            text11: this.text11,
+            text12: this.text12,
+        }).then(() => {
+            console.log("Текст добавлен")
+        })
+    }
 }
+let editSection5Form = document.querySelector(".section5")
+function renderSection5(data) {
+    editSection5Form.children[1].value = data.data().text1
+    editSection5Form.children[2].value = data.data().text2
+    editSection5Form.children[3].value = data.data().text3
+    editSection5Form.children[5].value = data.data().text4
+    editSection5Form.children[6].value = data.data().text4
+    editSection5Form.children[7].value = data.data().text4
+    editSection5Form.children[9].value = data.data().text4
+    editSection5Form.children[10].value = data.data().text4
+    editSection5Form.children[11].value = data.data().text4
+    editSection5Form.children[13].value = data.data().text4
+    editSection5Form.children[14].value = data.data().text4
+    editSection5Form.children[15].value = data.data().text4
+}
+editSection5Form.children[16].addEventListener('click', (e) => {
+    e.preventDefault()
+    let section5 = new Section5(
+        editSection5Form.children[1].value,
+        editSection5Form.children[2].value,
+        editSection5Form.children[3].value,
+        editSection5Form.children[5].value,
+        editSection5Form.children[6].value,
+        editSection5Form.children[7].value,
+        editSection5Form.children[9].value,
+        editSection5Form.children[10].value,
+        editSection5Form.children[11].value,
+        editSection5Form.children[13].value,
+        editSection5Form.children[14].value,
+        editSection5Form.children[15].value)
+    section5.addText()
+})
 //                                  END EDIT MAIN PAGE

@@ -112,3 +112,28 @@ let section4Image = document.querySelector(".section_3_1_1")
 let section4Sub = document.querySelector(".squares_2")
 let section4_ = new Section4()
 section4_.section4()
+//                                      ''' SECTION 5 '''
+class Section5 extends DisplayMainPage {
+    section5() {
+        db.collection("mainPage").doc("section5").onSnapshot(doc => {
+            s5_1.children[0].children[1].innerHTML = `${doc.data().text1}`
+            s5_1.children[0].children[2].innerHTML = `${doc.data().text2}`
+            s5_1.children[0].children[3].innerHTML = `${doc.data().text3}`
+            s5_2.children[0].children[1].innerHTML = `${doc.data().text4}`
+            s5_2.children[0].children[2].innerHTML = `${doc.data().text5}`
+            s5_2.children[0].children[3].innerHTML = `${doc.data().text6}`
+            s5_3.children[0].children[1].innerHTML = `${doc.data().text7}`
+            s5_3.children[0].children[2].innerHTML = `${doc.data().text8}`
+            s5_3.children[0].children[3].innerHTML = `${doc.data().text9}`
+            s5_4.children[0].children[1].innerHTML = `${doc.data().text10}`
+            s5_4.children[0].children[2].innerHTML = `${doc.data().text11}`
+            s5_4.children[0].children[3].innerHTML = `${doc.data().text12}`
+        })
+    }
+}
+let s5_1 = document.getElementById("s5_1")
+let s5_2 = document.getElementById("s5_2")
+let s5_3 = document.getElementById("s5_3")
+let s5_4 = document.getElementById("s5_4")
+let section5_ = new Section5()
+section5_.section5()
