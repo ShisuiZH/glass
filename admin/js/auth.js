@@ -15,13 +15,35 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 //                                      SIGNUP / SIGNOUT
 firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    personalCabinet(user)
+  try{
+    if (user) {
     db.collection('products').onSnapshot(snapshot => {
       showProducts(snapshot.docs);
     })
+    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
+      trackOrder(snapshot.docs);
+    })
+    db.collection("orders").doc(user.email).collection("user_order").onSnapshot(snapshot => {
+      showCalculator(snapshot.docs);
+    })
+    db.collection("mainPage").doc("section2").collection("services").onSnapshot(snapshot => {
+      renderSection2(snapshot.docs);
+    })
+    db.collection("mainPage").doc("section3").collection("portfolio").onSnapshot(snapshot => {
+      renderSection3(snapshot.docs);
+    })
+    db.collection("mainPage").doc("section4").get().then(snapshot => {
+      renderSection4(snapshot);
+    })
+    db.collection("mainPage").doc("section5").get().then(snapshot => {
+      renderSection5(snapshot);
+    })
+
+    personalCabinet(user)
   }else{
     personalCabinet()
+  }}catch(error){
+    console.log()
   }
 })
 function signUpWithEmailPassword() {
@@ -73,9 +95,7 @@ function signInWithEmailPassword() {
       })
     })
     .catch((error) => {
-      var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage)
       if(errorMessage == "There is no user record corresponding to this identifier. The user may have been deleted."){
         alert("Пользователь не найден, проверьте правильность написания email'a")
       }else if(errorMessage == "The password is invalid or the user does not have a password."){

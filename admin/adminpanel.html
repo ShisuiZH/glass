@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="showCalculator()">
     <form id="make-admin-form">
         <input type="email" id="email-admin-form">
         <button onclick="createAdmin(); return false">Создать администратора</button>
@@ -133,7 +133,7 @@
                 </tr>
                 <tr id="tr_facet1" style="display: none;">
                     <td>&nbsp;</td>
-                    <td colspan="2">Ширина фацета 1-я сторона (5-55мм): <input oninput="kalkulyator()" type="number"
+                    <td colspan="2">Ширина фацета 1-я сторона (5-55мм): <input value="0" oninput="kalkulyator()" type="number"
                             id="facet1" name="facet1" size="3" style="width: 30px;"> мм</td>
                 </tr>
                 <tr id="tr_facet2" style="display: none;">
@@ -317,7 +317,7 @@
                             <tbody>
                                 <tr>
                                     <td width="100" align="right">&nbsp;</td>
-                                    <td><label>Доставка курьером<input onclick="kalkulyator()" type="radio" id="dostavka_1"
+                                    <td><label>Доставка курьером<input checked onclick="kalkulyator()" type="radio" id="dostavka_1"
                                                 name="dostavka10" value="1"> </label></td>
                                     <td id="nur-sultan" style="display: none;">Нур-Султан</td>
                                     <td width="100" align="right">&nbsp;</td>
@@ -356,9 +356,6 @@
         <div class="status-email"></div>
         <div class="status-fname"></div>
     </div>
-    <div class="user_orders">
-
-    </div>
 
     <div class="add-product">
         <p>Добавить продукт</p>
@@ -373,8 +370,67 @@
     <div class="show-product">
         <p>Продукты</p>
         <div class="product-list">
-
         </div>
+    </div>
+    <p>Заказы</p>
+    <div class="user_orders">
+    </div>
+    <p>Для главной страницы</p>
+    <p>Секция 1</p>
+    <form id="section1-form">
+        <input type="text" name="name" placeholder="Название">
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <button class="btn-section1">Редакитровать</button>
+    </form>
+    <p>Секция 2</p>
+    <div class="section2">
+        <input type="text" name="name" placeholder="Название">
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <button onclick="section2AddService()" class="btn-section2">Добавить услугу</button>
+        <div class="section2_services"></div>
+    </div>
+    <p>Секция 3</p>
+    <div class="section3">
+        <input type="file">
+        <button class="btn-section3">Добавить работу в портфолио</button>
+        <div class="section3_portfolio"></div>
+    </div>
+    <p>Секция 4</p>
+    <div class="section4">
+        <input id="inp1" type="text" name="name" placeholder="Название">
+        <input id="inp2" type="text" name="name" placeholder="Название">
+        <input id="inp3" type="text" name="name" placeholder="Название">
+        <textarea id="inp4" cols="5" rows="6" placeholder="Описание"></textarea>
+        <input id="inp5" type="text" name="name" placeholder="Название">
+        <textarea id="inp6" cols="5" rows="6" placeholder="Описание"></textarea>
+        <input id="inp7" type="text" name="name" placeholder="Название">
+        <textarea id="inp8" cols="5" rows="6" placeholder="Описание"></textarea>
+        <button class="btn-section4_text">Добавить текст</button>
+        <input id="inp9" type="file">
+        <button class="btn-section4_image">Добавить картинку</button>
+        <button class="btn-section4_delImage">Удалить картинку</button>
+        <div class="section4_portfolio"></div>
+    </div>
+    <p>Секция 5</p>
+    <div class="section5">
+        <p>О нас</p>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <p>Помощь</p>
+        <textarea id="i1" cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea id="i2" cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea id="i3" cols="5" rows="6" placeholder="Описание"></textarea>
+        <p>Другое</p>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <p>Контакты</p>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <textarea cols="5" rows="6" placeholder="Описание"></textarea>
+        <button class="btn-section5">Добавить</button>
+        
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -386,7 +442,7 @@
     <script src="js/pdfmake/pdfmake.min.js"></script>
     <script src="js/pdfmake/vfs_fonts.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/admin.js"></script>
     <script src="js/calculator.js"></script>
 </body>
 

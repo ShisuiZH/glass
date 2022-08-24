@@ -1,245 +1,139 @@
-const createForm = document.querySelector("#create-form");
-const loginButtons = document.querySelectorAll(".login")
-const exit = document.querySelector(".signOut")
-const statusEmail = document.querySelector(".status-email")
-const statusFname = document.querySelector(".status-fname")
-const status = document.querySelector(".status")
-const statusGuest = document.querySelector(".status")
-const calculator = document.querySelector(".calculator")
-const loginInputs = document.getElementById("login-inputs")
-const userOrders = document.querySelector(".user_orders")
-
-
-function createAdmin(cancelAd) {
-    let makeAdminForm = document.getElementById("make-admin-form")
-    let email = makeAdminForm['email-admin-form'].value
-    db.collection("users").where("email", "==", email).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            if (cancelAd === null) {
-                db.collection('users').doc(doc.id).update({
-                    isAdmin: false,
-                }).then(() => {
-                    console.log("Админ отменен")
-                })
-            } else {
-                db.collection('users').doc(doc.id).update({
-                    isAdmin: true,
-                }).then(() => {
-                    console.log("Админ выдан")
-                })
-            }
-        })
-    })
-}
-
-//                                  START PERSONAL Cabinet
+//                                  DISPLAY EMAIL
 function personalCabinet(user) {
-    try {
-        db.collection('users').doc(user.uid).get().then(doc => {
-            if (doc.data().isAdmin === false) {
-                status.innerHTML = `
-                <h3>Покупатель</h3>
-                `
-                db.collection('users').doc(user.uid).get().then((doc) => {
-                    const html = `
-                <div> ${user.email} </div>
-                <p> ${doc.data().first_name}</p>
-                <p> ${doc.data().second_name}</p>
-                <input placeholder="Адрес" value='${doc.data().addres}'>
-                <input placeholder="Город" value='${doc.data().city}'>
-                <input placeholder="Номер телефона" value='${doc.data().phoneNumber}'>
-                <button id="change">Изменить</button>
-                <button onclick="signOut()">Выход</button>
-                `
-                    statusEmail.innerHTML = html
-                    change.addEventListener('click', (e) => {
-                        db.collection('users').doc(user.uid).update({
-                            addres: statusEmail.children[3].value,
-                            city: statusEmail.children[4].value,
-                            phoneNumber: statusEmail.children[5].value,
-                        }).then(() => {
-                            console.log("Изменения внесены")
-                        })
-                    })
-                })
-            } else if (doc.data().isAdmin === true) {
-                status.innerHTML = `
-            <h3>Ваш статус: Менеджер</h3><a href='../admin/adminpanel.html'>Перейти</a></h3>
-            `
-                db.collection('users').doc(user.uid).get().then((doc) => {
-                    const html = `
-                <div> ${user.email} </div>
-                <p> ${doc.data().first_name}</p>
-                <p> ${doc.data().second_name}</p>
-                <input placeholder="Адрес" value='${doc.data().addres}'>
-                <input placeholder="Город" value='${doc.data().city}'>
-                <input placeholder="Номер телефона" value='${doc.data().phoneNumber}'>
-                <button id="change">Изменить</button>
-                <button onclick="signOut()">Выход</button>
-                `
-                    statusEmail.innerHTML = html
-                    change.addEventListener('click', (e) => {
-                        db.collection('users').doc(user.uid).update({
-                            addres: statusEmail.children[3].value,
-                            city: statusEmail.children[4].value,
-                            phoneNumber: statusEmail.children[5].value,
-                        }).then(() => {
-                            console.log("Изменения внесены")
-                        })
-                    })
-                })
-            }
-        })
-    } catch (e) { }
+    document.querySelector(".nav_buttons").innerHTML = `${user.email} <button onclick="signOut()">Выход</button>`
 }
-//                                  END PERSONAL Cabinet
+//                                  END DISPLAY EMAIL
 
-//                                  START ORDERS
-function showCalculator() {
-    db.collection("orders").get().then(snapshot => {
-        try {
-            console.log(snapshot)
-            snapshot.docs.forEach(function callback(doc, index) {
-                const html = `
-            <div style="border: 5px solid;" class="order${index}">
-            <p>${doc.data().email}</p>
-            <p>${doc.data().category}</p>
-            <p>${doc.data().width}</p>
-            <p>${doc.data().height}</p>
-            <p>${doc.data().zakalka}</p>
-            <p>${doc.data().rezka}</p>
-            <p>${doc.data().quantity}</p>
-            <p>${doc.data().edgeTreatment}</p>
-            <p>${doc.data().edgeTreatmentType}</p>
-            <p>${doc.data().facet}</p>
-            <p>${doc.data().firstSide}</p>
-            <p>${doc.data().secondSide}</p>
-            <p>${doc.data().hole}</p>
-            <p>${doc.data().holeCount}</p>
-            <p>${doc.data().holeDiametr}</p>
-            <p>${doc.data().cutout}</p>
-            <p>${doc.data().insideCutout}</p>
-            <p>${doc.data().outsideCutout}</p>
-            <p>${doc.data().sandBlasting}</p>
-            <p>${doc.data().sandBlastingType}</p>
-            <p>${doc.data().engraving}</p>
-            <p>${doc.data().engravingMeter}</p>
-            <p>${doc.data().laminating}</p>
-            <p>${doc.data().laminatingType}</p>
-            <p>${doc.data().oplata}</p>
-            <p>${doc.data().totalPrice}</p>
-            <p>${doc.data().deliveryType}</p>
-            <p>${doc.data().comment}</p>
-            <p>${doc.data().date}</p>
-            <button id="btn${index}">Заказ завершен</button>
-            <select id="delivery-status${index}">
-            <option value="Готовится">Готовится</option>
-            <option value="Отправлено">Отправлено</option>
-            <option value="В пути">В пути</option>
-            <option value="Прибыло">Прибыло</option>
-            </select>
-            <p>${doc.data().deliveryStatus}</p>
-            </div>
-            `
-                userOrders.innerHTML += html
-                firebase.auth().onAuthStateChanged((user) => {
-                    if (user) {
-                        document.getElementById("btn" + index).addEventListener('click', (e) => {
-                            console.log(doc.id)
-                            db.collection("orders").doc(doc.id).delete().then(() => {
-                                console.log("Заказ завершен");
-                            })
-                        })
-                        document.getElementById("delivery-status" + index).addEventListener('click', (e) => {
-                            console.log(document.getElementById("delivery-status" + index).value)
-                            db.collection("orders").doc(doc.id).update({
-                                deliveryStatus: document.getElementById("delivery-status" + index).value
-                            })
-                        })
-                    }
-                })
-            })
-        } catch (e) {
-            console.log(e)
-        }
-    })
-}
-//                                  END ORDERS
-
-//                                  START ADD PRODUCTS
-function addProduct() {
-    let createProductForm = document.getElementById("create-product-form")
-    db.collection("products").add({
-        header: createProductForm.children[0].value,
-        text: createProductForm.children[1].value,
-    }).then(function (docRef) {
-        createProductForm.children[4].innerHTML = "Товар добавлен"
-        file = createProductForm.children[2].files[0];
-        storageRef = firebase.storage().ref(`${file.name}`);
-        storageRef.put(file).then(() => {
-            storageRef.getDownloadURL().then((url) => {
-                db.collection("products").doc(docRef.id).update({
-                    image: url
-                }).catch(() => {
-                    console.log("Изображение не добавлено")
-                })
-            })
-        })
-    }
-    )
-}
-
-function showProducts(data) {
-    let products = document.querySelector(".product-list")
-    try {
-        let html = '';
-        data.forEach(function callback(doc, index) {
-            const list = `<div style="border: 5px solid;" class="product${index}">
-                <input value="${doc.data().header}">
-                <input value="${doc.data().text}">
-                <img style="width:100px; height:100px;" src="${doc.data().image}">
-                <input type="file">
-                <button id="btnd${index}">Удалить</button>
-                <button id="btnu${index}">Редактировать</button>
-                </div>`
-                html += list
-                firebase.auth().onAuthStateChanged((user) => {
-                    if (user) {
-                        document.querySelector(".product" + index).addEventListener('click', (e) => {
-                            if (e.target.id == "btnd" + index) {
-                                db.collection("products").doc(doc.id).delete().then(() => {
-                                    console.log("Товар удален")
-                                })
-                            }
-                            if (e.target.id == "btnu" + index) {
-                                file = document.querySelector(".product" + index).children[3].files[0];
-                                storageRef = firebase.storage().ref(`${file.name}`);
-                                storageRef.put(file).then(() => {
-                                    storageRef.getDownloadURL().then((url) => {
-                                        db.collection("products").doc(doc.id).update({
-                                            image: url
-                                        }).catch(() => {
-                                            console.log("Изображение не добавлено")
-                                        })
-                                    })
-                                })
-                            db.collection("products").doc(doc.id).update({
-                                header: document.querySelector(".product" + index).children[0].value,
-                                text: document.querySelector(".product" + index).children[1].value,
-                            }).then(() => {
-                                console.log("Товар обновлен")
-                            })
-                        }
-                    })
-                }
-            })
-        })
-        products.innerHTML = html
-
-    } catch (e) {
-        console.log(e)
+//                                  START DISPLAY MAIN PAGE
+class DisplayMainPage {
+    constructor(header, text) {
+        this.header = header;
+        this.text = text;
     }
 }
-//                                  END ADD PRODUCTS
+//                                      ''' SECTION 1 '''
+class Section1 extends DisplayMainPage {
+    section1() {
+        db.collection("mainPage").doc("section1").onSnapshot(doc => {
+            let html = '';
+            let section = `
+                <h1 class="header_text_1">${doc.data().header}</h1>
+                <div class="header_text_2">${doc.data().text}</div>
+                `
+            html += section
+            section1.innerHTML = html
+        })
+    }
+}
+let section1 = document.querySelector(".header_content")
+let section1_ = new Section1()
+section1_.section1()
+//                                      ''' SECTION 2 '''
+class Section2 extends DisplayMainPage {
+    section2() {
+        db.collection("mainPage").doc("section2").collection("services").onSnapshot(doc => {
+            let html = '';
+            doc.forEach(doc => {
+                let section = `
+                <div class="square_1">
+                            <div>
+                                <h2>${doc.data().header}</h2>
+                                <span>
+                                ${doc.data().text}
+                                </span>
+                            </div>
+                            
+                            <button class="button_2">Подробнее</button>
+                </div>
+                    `
+                html += section
+            });
+            section2.innerHTML = html
+        })
+    }
+}
+let section2 = document.querySelector(".squares_1")
+let section2_ = new Section2()
+section2_.section2()
+//                                      ''' SECTION 3 '''
+class Section3 {
+    section3() {
+        db.collection("mainPage").doc("section3").collection("portfolio").get().then(doc => {
+            let html = '';
+            doc.forEach(doc => {
+                let section = `
+                <div class="slide">
+                            <div>
+                                <img style="width:100%; height:100%" src="${doc.data().image}">
+                            </div>
+                        </div>
+                    `
+                    html += section
+                    $('.slider').slick('slickAdd', section);
+            });
+            section3.innerHTML = html
+        })
+    }
+}
+let section3 = document.querySelector(".slider_wrapper").children[0].children[0]
+let section3_ = new Section3()
+section3_.section3()
+//                                      ''' SECTION 4 '''
+class Section4 extends DisplayMainPage {
+    section4() {
+        db.collection("mainPage").doc("section4").onSnapshot(doc => {
+                let html = '';
+                section4Sub.children[0].children[1].innerHTML = `
+                <span>${doc.data().subheader1}</span>`
+                section4Sub.children[0].children[2].innerHTML = `
+                <div>${doc.data().subtext1}</div>`
+                section4Sub.children[1].children[1].innerHTML = `
+                <span>${doc.data().subheader2}</span>`
+                section4Sub.children[1].children[2].innerHTML = `
+                <div>${doc.data().subtext2}</div>`
+                section4Sub.children[2].children[1].innerHTML = `
+                <span>${doc.data().subheader3}</span>`
+                section4Sub.children[2].children[2].innerHTML = `
+                <div>${doc.data().subtext3}</div>`
+                section4Image.innerHTML = `<img src="${doc.data().image}">`
+                let section = `
+                    <h2>${doc.data().header}</h2>
+                    ${doc.data().text}
+                    `
+                html += section
+                section4.innerHTML = html
+            
+            
+        })
+    }
+}
+let section4 = document.querySelector(".section_3_1_2_text")
+let section4Image = document.querySelector(".section_3_1_1") 
+let section4Sub = document.querySelector(".squares_2")
+let section4_ = new Section4()
+section4_.section4()
+//                                      ''' SECTION 5 '''
+class Section5 extends DisplayMainPage {
+    section5() {
+        db.collection("mainPage").doc("section5").onSnapshot(doc => {
+            s5_1.children[0].children[1].innerHTML = `${doc.data().text1}`
+            s5_1.children[0].children[2].innerHTML = `${doc.data().text2}`
+            s5_1.children[0].children[3].innerHTML = `${doc.data().text3}`
+            s5_2.children[0].children[1].innerHTML = `${doc.data().text4}`
+            s5_2.children[0].children[2].innerHTML = `${doc.data().text5}`
+            s5_2.children[0].children[3].innerHTML = `${doc.data().text6}`
+            s5_3.children[0].children[1].innerHTML = `${doc.data().text7}`
+            s5_3.children[0].children[2].innerHTML = `${doc.data().text8}`
+            s5_3.children[0].children[3].innerHTML = `${doc.data().text9}`
+            s5_4.children[0].children[1].innerHTML = `${doc.data().text10}`
+            s5_4.children[0].children[2].innerHTML = `${doc.data().text11}`
+            s5_4.children[0].children[3].innerHTML = `${doc.data().text12}`
+        })
+    }
+}
+let s5_1 = document.getElementById("s5_1")
+let s5_2 = document.getElementById("s5_2")
+let s5_3 = document.getElementById("s5_3")
+let s5_4 = document.getElementById("s5_4")
+let section5_ = new Section5()
+section5_.section5()
