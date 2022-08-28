@@ -12,7 +12,6 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 a {
     text-decoration: none;
 }
@@ -245,27 +244,18 @@ header{
 .sqr_1{
     grid-area: sqr_1;
     /* background: url(../source/glass1.webp) no-repeat center/cover; */
-    filter: brightness(80%);
 }
 .sqr_2{
     grid-area: sqr_2;
-    /* background: url(../source/glass1.webp) no-repeat center/cover; */
-    filter: brightness(80%);
 }
 .sqr_3{
     grid-area: sqr_3;
-    /* background: url(../source/glass1.webp) no-repeat center/cover; */
-    filter: brightness(80%);
 }
 .sqr_4{
     grid-area: sqr_4;
-    /* background: url(../source/glass1.webp) no-repeat center/cover; */
-    filter: brightness(80%);
 }
 .sqr_5{
     grid-area: sqr_5;
-    /* background: url(../source/glass1.webp) no-repeat center/cover; */
-    filter: brightness(80%);
 }
 
 .square_1{
@@ -276,7 +266,6 @@ header{
     height: auto;
     padding: 40px 40px;
     background-color: #101219;
-    transition: all 0.8s;
 }
 
 .square_1 h2{
@@ -290,7 +279,9 @@ header{
 }
 
 .square_1:hover{
-    filter: brightness(100%);
+    border-bottom: 1px solid rgba(0, 255, 170, 0.7);
+    border-image: linear-gradient(90deg, rgba(0,255,170,0.7) 15%, rgba(150,255,170,0.75) 100%);
+    border-image-slice: 1;
 }
 
 .button_2{
@@ -474,7 +465,134 @@ footer{
     to {
         transform: rotate(360deg); } 
 }
+.calc-section{
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #101219;
+    z-index: 0;
+}
+.calc-section1{
+    height: auto;
+    width: 100%;
+    text-align: center;
+}
+.calc-section1 h2{
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+.calc{
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+    background-color: #15171d;
+}
+.calc input{
+    color: #000;
+    padding-left: 5px;
+}
+.calc-content{
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+}
+.line-items{
+    height: auto;
+    padding: 2px 1px;
+    background-color: aqua;
+    border-bottom:1px solid #101219;
+    display: flex;
+}
+.line-item{
+    display: flex;
+}
+.line-items select, option{
+    color: #000;
+}
+optgroup{
+    font-weight: bolder;
+    color: #000;
+}
+.line-number{
+    border: 1px solid #fff;
+    padding: 1px 10px 1px 1px;
+}
+.line-name{
+    border: 1px solid #fff;
+    padding: 1px 10px 1px 5px;
+}
+.line-item{
+    border: 1px solid #fff;
+    margin-left: 30px;
+}
+.glasses{
+    height: auto;
+    width: 100%;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+}
+.grid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.grid img{
+    margin-bottom: 10px;
+}
 
+.block1{
+    display: flex;
+    margin: 5px 0 0 120px;
+}
+.block2{
+    display: flex;
+    margin: 5px 0 0 129px;
+}
+.price-block{
+    display: flex;
+    justify-content: end;
+    padding: 3px 0;
+}
+.total-cost{
+    display: flex;
+    justify-content: end;
+    padding: 3px 0;
+}
+
+.items{
+    height: auto;
+    padding: 5px 3px;
+    background-color: gray;
+}
+.hiditem button{
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
+    color: #000;
+}
+.hiditem{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+}
+.items input{
+    margin-right: 50px;
+}
+.hidden{
+    display: none;
+}
+.hidden-item{
+    display: flex;
+    margin-bottom: 5px;
+}
+.hidden-item input{
+    margin: 0 5px;
+}
 .section_2{
     padding-top: 30px;
     width: 100%;
@@ -482,6 +600,7 @@ footer{
     background-color: #101219;
     position: relative;
     z-index: 0;
+    color: #101219;
 }
 
 .section_2_1 h2{
