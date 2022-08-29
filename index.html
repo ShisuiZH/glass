@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 </head>
-<body>
+<body onload="showCalculator()">
     <div class="preloader">
         <div class="preloader_content">
             <div class="circle">
@@ -139,332 +139,345 @@
             <div class="calc-section1">
                 <h2>Онлайн Калькулятор</h2>
             </div>
-            <div class="calc">
-                <div class="calc-content">
-                    <div class="line-items">
-                        <div class="line-number">1.</div>
-                        <div class="line-name">Вид материала</div>
-                        <div class="line-item"><select name="" id="">
-                            <optgroup label="Стекло">
-                                <option value="">Стекло 2 мм</option>
-                                <option value="">Стекло 4 мм</option>
-                                <option value="">Стекло 6 мм</option>
-                                <option value="">Стекло 8 мм</option>
-                                <option value="">Стекло 10 мм</option>
-                                <option value="">Стекло 12 мм</option>
-                                <option value="">Стекло 15 мм</option>
-                                <option value="">Стекло 19 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 4 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 6 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 8 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 10 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 12 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 15 мм</option>
-                                <option value="">Стекло осветленное ОПТИВАЙТ 19 мм</option>
-                                <option value="">Стекло тонированное 4 мм</option>
-                                <option value="">Стекло тонированное 5 мм</option>
-                                <option value="">Стекло тонированное 6 мм</option>
-                                <option value="">Стекло тонированное 8 мм</option>
-                                <option value="">Стекло тонированное 10 мм</option>
-                                <option value="">Стекло сатинированное бесцветное 4 мм</option>
-                                <option value="">Стекло сатинированное бесцветное 5 мм</option>
-                                <option value="">Стекло сатинированное бесцветное 6 мм</option>
-                                <option value="">Стекло сатинированное бесцветное 8 мм</option>
-                                <option value="">Стекло сатинированное бесцветное 10 мм</option>
-                                <option value="">Стекло сатинированное БРОНЗА 4 мм</option>
-                                <option value="">Стекло сатинированное БРОНЗА 5 мм</option>
-                                <option value="">Стекло сатинированное БРОНЗА 6 мм</option>
-                                <option value="">Стекло сатинированное БРОНЗА 8 мм</option>
-                                <option value="">Армировнное стекло (Польша) 6 мм</option>
-                                <option value="">Армированное стекло (Белорусия) 6 мм</option>
-                                <option value="">Узорчатое стекло из Турции 4 мм</option>
-                                <option value="">Узорчатое стекло из Польши 4мм</option>
-                            </optgroup>
-                            <optgroup label="Триплекс">
-                                <option value="">Триплекс прозрачный 3.3.1 мм</option>
-                                <option value="">Триплекс прозрачный 4.4.1 мм</option>
-                                <option value="">Триплекс прозрачный 5.5.1 мм</option>
-                                <option value="">Триплекс прозрачный 6.6.1 мм</option>
-                                <option value="">Триплекс матовый 3.3.1 мм</option>
-                                <option value="">Триплекс матовый 4.4.1 мм</option>
-                                <option value="">Триплекс матовый 5.5.1 мм </option>
-                                <option value="">Триплекс матовый 6.6.1 мм</option>                
-                            </optgroup>
-                            <optgroup label="Зеракло">
-                                <option value="">Зеркало серебро 4 мм</option>
-                                <option value="">Зеркало серебро 5 мм</option>
-                                <option value="">Зеркало серебро 6 мм</option>
-                                <option value="">Зеркало бронзовое 4 мм</option>
-                                <option value="">Зеркало серое 4 мм</option>
-                                <option value="">Зеркало зеленое 4 мм</option>
-                                <option value="">Зеркало темно-синее 4 мм</option>
-                                <option value="">Зеркало состаренное 4 мм</option>
-                                <option value="">Зеркало морена 4 мм</option>
-                                <option value="">Зеркало золото 4 мм</option>
-                                <option value="">Зеркало сатинат серебро 4 мм</option>
-                                <option value="">Зеркало сатинат бронза 4 мм</option>
-                                <option value="">Зеркало сатинат золото 4 мм</option>
-                                <option value="">Зеркало сатинат с рисунком серебро 4 мм</option>
-                                <option value="">Зеркало сатинат с рисунком бронза 4 мм</option>
-                                <option value="">Зеркало сатинат с рисунком золото 4 мм</option>
-                                <option value="">Лакобель (стандартный цвет) 4 мм</option>
-                                <option value="">Лакобель (просветленный цвет цвет) 4 мм</option>
-                            </optgroup>
-                        </select></div>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">2.</div>
-                        <div class="line-name">Форма изделия:</div>
-                    </div>
-                    <div class="glasses">
-                        <div class="grid i1">
-                            <img src="source/1.png" alt="">
-                            <input type="radio" id="i1" name="tabs">
-                            <label for="i1"></label>
-                        </div>
-                        <div class="grid i2">
-                            <img src="source/2.png" alt="">
-                            <input type="radio" id="i2" name="tabs">
-                            <label for="i2"></label>
-                        </div>
-                        <div class="grid i3">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i4">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i5">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i6">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i7">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i8">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i9">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i10">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i11">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i12">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i13">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i14">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                        <div class="grid i15">
-                            <img src="source/3.png" alt="">
-                            <input type="radio" id="i3" name="tabs">
-                            <label for="i3"></label>
-                        </div>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">3.</div>
-                        <div class="line-name">Размеры:</div>
-                    </div>
-                    <div class="height-width-block">
-                        <div class="block1">
-                            <p>Ширина:</p>
-                            <input type="text" value="1000">
-                            <p>мм</p>
-                        </div>
-                        <div class="block2">
-                            <p>Высота:</p>
-                            <input type="text" value="1000">
-                            <p>мм</p>
-                        </div>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">4.</div>
-                        <div class="line-name">Количество:</div>
-                        <div class="line-item" style="margin-left: 49px; "><input type="text" value="100"><p>шт</p></div>
-                    </div>
-                    <div class="price-block">
-                        <p>Стоимость материала с резкой: 510р</p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">5.</div>
-                        <div class="line-name">Обработка кромки:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items">
-                        <label for="a1">Только резка</label>
-                        <input type="radio" id="a1" name="tab2">
-                        <label for="a1">Полировка</label>
-                        <input type="radio" id="a1" name="tab2">
-                        <label for="a1">Шлифовка</label>
-                        <input type="radio" id="a1" name="tab2">
-                        <label for="a1">Полировка под углом 45°</label>
-                        <input type="radio" id="a1" name="tab2">
-                        <label for="a1">Шлифовка под углом 45°</label>
-                        <input type="radio" id="a1" name="tab2">
-                    </div>
-                    <div class="price-block hidden" style="margin-left: 912px;">
-                        <p>Стоимость обработки кромки: 520р</p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">6.</div>
-                        <div class="line-name">Фацет:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items">
-                        <div class="hidden-item">
-                            <p>Ширина фацета 1-я сторона (5-55мм):</p><input type="number">мм
-                        </div>
-                        <div class="hidden-item">
-                            <p>	Ширина фацета 2-я сторона (5-55мм):</p><input type="number">мм
-                        </div>
-                    </div>
-                     <div class="price-block hidden">
-                     <p>Стоимость фацета: 520р </p>
-                     </div>
-                     <div class="line-items">
-                        <div class="line-number">7.</div>
-                        <div class="line-name">Отверстия:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items" style="flex-direction: column;">
-                        <div class="hiditem">
-                            <p>Диаметр (3-140 мм):</p>
-                            <input type="number" style="margin: 0 0 0 5px;">
-                             <p>мм в количестве:</p>
-                            <input type="number" style="margin: 0 0 0 5px;">
-                            <p>шт. Зенковка</p>
-                            <input type="checkbox">
-                            <button>-</button>
-                            <button>+</button>
-                        </div>
-                    </div>    
-                    <div class="price-block hidden">
-                    <p>Стоимость сверление отверстий: 520р </p>
-                    </div>
-                    <div class="line-items">
-                       <div class="line-number">8.</div>
-                       <div class="line-name">Вырезы:</div>
-                       <input type="checkbox">
-                    </div>
-                    <div class="hidden items">
-                    <div class="hidden-item">
-                        <p>Внешний шлифованный в количестве:</p><input type="number">шт
-                    </div>
-                    <div class="hidden-item">
-                        <p>Внутренний шлифованный в количестве:</p><input type="number">шт
-                    </div>
-                    </div>
-                    <div class="price-block hidden">
-                    <p>Стоимость вырезов: 520р </p>
-                     </div>
-                    <div class="line-items">
-                        <div class="line-number">9.</div>
-                        <div class="line-name">Закалка:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость закалки: 520р </p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">10.</div>
-                        <div class="line-name">Пескоструйный рисунок:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items" >
-                        <label for="k1">Сплошной песок</label><input type="radio" name="k1" id="k1">
-                        <label for="k2">Не сложный рисунок(простые фигуры, немного линий)</label><input type="radio" name="k1" id="k2">
-                        <label for="k3">Сложный рисунок(мелкие детали, обилий линий и точек)</label><input type="radio" name="k1" id="k3">
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость пескоструйного рисунка: 520р </p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">11.</div>
-                        <div class="line-name">Гравировка:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items">
-                        <div class="hidden-item">
-                            <p>Сколько погонных метров в гравировке:</p>
-                            <input type="text" style="margin-right: 5px;">
-                            м
-                        </div>
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость гравировки: 520р </p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">12.</div>
-                        <div class="line-name">Наклейка пленки:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items" >
-                        <label for="g1">Защитная пленка</label><input type="radio" name="g1" id="g1">
-                        <label for="g2">Цветная пленка</label><input type="radio" name="g1" id="g2">
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость наклейки пленки: 520р </p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">13.</div>
-                        <div class="line-name">Вызов замерщика:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items" >
-                        <label for="t1">Москва</label><input type="radio" name="t1" id="t1">
-                        <label for="t2">Подмосковье</label><input type="radio" name="t1" id="t2">
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость замера: 520р </p>
-                    </div>
-                    <div class="line-items">
-                        <div class="line-number">14.</div>
-                        <div class="line-name">Доставка:</div>
-                        <input type="checkbox">
-                    </div>
-                    <div class="hidden items" >
-                        <label for="j1">Москва</label><input type="radio" name="j1" id="j1">
-                        <label for="j2">Подмосковье</label><input type="radio" name="j1" id="j2">
-                    </div>
-                    <div class="price-block hidden">
-                        <p>Стоимость доставки: 520р </p>
-                    </div>
-                    <div class="total-cost">
-                        <p>Итоговая стоимость заказа: 520р </p>
-                    </div>
-               </div>
+            <form name="calc" id="calc">
+                <table class="calc" style="width: 760px;" border="0" cellspacing="1" cellpadding="2">
+                    <tbody>
+                        <tr class="th">
+                            <td width="20">1.</td>
+                            <td width="174">Вид материала</td>
+                            <td width="567"><select onchange="kalkulyator()" id="type">
+                                    <optgroup label="Стекло">
+                                        <option id="st2m" label="Стекло 2 мм" value="600">Стекло 2 мм</option>
+                                        <option selected="selected" value="580">Стекло 4 мм</option>
+                                        <option value="800">Стекло 5 мм</option>
+                                        <option value="850">Стекло 6 мм</option>
+                                </select><output id="id_material"></output></td>
+                        </tr>
+                        <tr class="th">
+                            <td>2.</td>
+                            <td colspan="2">Форма изделия:</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="3">
+                                    <tbody>
+                                        <tr align="center">
+                                            <td><label><img src="../1.png" alt=""> <input onclick="kalkulyator()"
+                                                        type="radio" id="t1" name="type10" value="1"> </label>
+                                            </td>
+                                            <td><label><img src="../2.png" alt=""> <input onclick="kalkulyator()"
+                                                        type="radio" id="t2" name="type10" value="2" checked> </label></td>
+                                            <td><label><img src="../3.png" alt=""> <input onclick="kalkulyator()"
+                                                        type="radio" id="t3" name="type10" value="3"> </label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="th">
+                            <td>3.</td>
+                            <td colspan="2">Размеры:</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="right">Ширина:</td>
+                            <td><input oninput="kalkulyator()" type="number" id="a" name="a" value="1000" size="6"
+                                    style="width: 60px;"> мм</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="right">Высота:</td>
+                            <td><input oninput="kalkulyator()" type="number" id="b" name="b" value="1000" size="6"
+                                    style="width: 60px;"> мм</td>
+                        </tr>
+                        <tr class="th">
+                            <td>4.</td>
+                            <td>Количество:</td>
+                            <td><input oninput="kalkulyator()" type="number" id="n" name="n" value="1" size="6"
+                                    style="width: 60px;"> шт</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="2" align="right">Стоимость материала с резкой: <output id="st_rezka0"></output><output
+                                    id="st_rezka">580</output> тг.</td>
+                        </tr>
+                        <tr id="tr_kromka0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>5.</td>
+                            <td colspan="2"><label>Обработка кромки: <input onclick="kalkulyator()" type="checkbox"
+                                        id="view_kromka"> </label></td>
+                        </tr>
+                        <tr id="tr_kromka1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td width="140" align="right"><label>Только резка <input onclick="kalkulyator()"
+                                                        type="radio" id="kromka_1" name="kromka10" value="0" checked="checked">
+                                                </label></td>
+                                            <td width="30">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">&nbsp;</td>
+                                            <td align="right"><label id="label3" style="color: rgb(10, 5, 119);">Полировка
+                                                    <input onclick="kalkulyator()" type="radio" id="kromka_3" name="kromka10"
+                                                        value="1"> </label></td>
+                                            <td>&nbsp;</td>
+                                            <td><label id="label5" style="color: rgb(10, 5, 119);">Полировка под углом 45°
+                                                    <input onclick="kalkulyator()" type="radio" id="kromka_5" name="kromka10"
+                                                        value="4"> </label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">&nbsp;</td>
+                                            <td align="right"><label id="label2">Шлифовка <input onclick="kalkulyator()"
+                                                        type="radio" id="kromka_2" name="kromka10" value="2"> </label></td>
+                                            <td>&nbsp;</td>
+                                            <td><label id="label4" style="color: rgb(10, 5, 119);">Шлифовка под углом 45° <input
+                                                        onclick="kalkulyator()" type="radio" id="kromka_4" name="kromka10"
+                                                        value="3"> </label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="tr_kromka2" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2" align="right">Стоимость обработки кромки: <output id="st_kromka0"></output><output
+                                    id="st_kromka">0</output> тг.<br></td>
+                        </tr>
+                        <tr id="tr_facet0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>6.</td>
+                            <td colspan="2"><label>Фацет: <input onclick="kalkulyator()" type="checkbox" id="view_facet">
+                                </label></td>
+                        </tr>
+                        <tr id="tr_facet1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">Ширина фацета 1-я сторона (5-55мм): <input value="0" oninput="kalkulyator()" type="number"
+                                    id="facet1" name="facet1" size="3" style="width: 30px;"> мм</td>
+                        </tr>
+                        <tr id="tr_facet2" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">Ширина фацета 2-я сторона (5-55мм): <input oninput="kalkulyator()" type="number"
+                                    id="facet2" name="facet2" size="3" style="width: 30px;"> мм</td>
+                        </tr>
+                        <tr id="tr_facet3" style="display: none;">
+                            <td colspan="3" align="right">Стоимость фацета: <output id="st_facet0"></output><output
+                                    id="st_facet">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_otver0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>7.</td>
+                            <td colspan="2"><label>Отверстия: <input onclick="kalkulyator()" type="checkbox" id="view_otver">
+                                </label></td>
+                        </tr>
+                        <tr id="tr_otver1">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <div id="btn" class="p">
+                                    <div>Диаметр (3-140 мм): <input oninput="kalkulyator()" type="number" id="diam_0"
+                                            name="otver_diam[]" size="3" style="width: 50px;"> мм в количестве: <input
+                                            oninput="kalkulyator()" type="number" id="count_0" name="otver_count[]" size="4"
+                                            style="width: 40px;"> шт. <label id="label_zenkovka_0"
+                                            style="color: rgb(10, 5, 119);">Зенковка <input onclick="kalkulyator()"
+                                                type="checkbox" id="zenkovka_0" name="zenkovka_0"> </label> <button
+                                            type="button" disabled="disabled" id="delbtn" class="delStr">-</button> <button type="button"
+                                            class="addStr">+</button> Стоимость: <output id="st_otver_0">550</output> <input
+                                            type="hidden" id="otver_st_0" name="otver_st[]" value="550"> тг.</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="tr_otver2" colspan="3" align="right">Стоимость сверление отверстий: <output
+                                    id="st_otv0"></output><output id="st_otv">550</output> тг.</td>
+                        </tr>
+                        <tr id="tr_vyrez0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>8.</td>
+                            <td colspan="2"><label>Вырезы: <input onclick="kalkulyator()" type="checkbox" id="view_vyrez">
+                                </label></td>
+                        </tr>
+                        <tr id="tr_vyrez1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">Внешний &nbsp; шлифованный &nbsp; в количестве:&nbsp; <input oninput="kalkulyator()"
+                                    type="number" id="n_vnesh" name="n_vnesh" value="0" size="4" style="width: 40px;"> шт.</td>
+                        </tr>
+                        <tr id="tr_vyrez2" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">Внутренний шлифованный в количестве: <input oninput="kalkulyator()" type="number"
+                                    id="n_vnutr" name="n_vnutr" value="0" size="4" style="width: 40px;"> шт.</td>
+                        </tr>
+                        <tr id="tr_vyrez3" style="display: none;">
+                            <td colspan="3" align="right">Стоимость вырезов: <output id="st_vyrez0"></output><output
+                                    id="st_vyrez">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_zakalka0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>9.</td>
+                            <td colspan="2"><label>Закалка: <input onclick="kalkulyator()" type="checkbox" id="view_zakalka">
+                                </label></td>
+                        </tr>
+                        <tr id="tr_zakalka1" style="display: none;">
+                            <td colspan="3" align="right">Стоимость закалки: <output id="st_zakalka0"></output><output
+                                    id="st_zakalka">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_pesok0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>10.</td>
+                            <td colspan="2"><label>Пескоструйный рисунок: <input onclick="kalkulyator()" type="checkbox"
+                                        id="view_pesok"> </label></td>
+                        </tr>
+                        <tr id="tr_pesok1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Сплошной песок <input onclick="kalkulyator()" type="radio" id="pesok_1"
+                                                        name="pesok10" value="1"> </label></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Не сложный рисунок<br> (простые фигуры, немного линий) <input
+                                                        onclick="kalkulyator()" type="radio" id="pesok_2" name="pesok10"
+                                                        value="2"> </label></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Сложный рисунок<br> (мелкие детали, обилий линий и точек) <input
+                                                        onclick="kalkulyator()" type="radio" id="pesok_3" name="pesok10"
+                                                        value="3"> </label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="tr_pesok2" style="display: none;">
+                            <td colspan="3" align="right">Стоимость пескоструйного рисунка: <output
+                                    id="st_pesok0"></output><output id="st_pesok">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_gravir0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>11.</td>
+                            <td colspan="2"><label>Гравировка: <input onclick="kalkulyator()" type="checkbox" id="view_gravir">
+                                </label></td>
+                        </tr>
+                        <tr id="tr_gravir1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">Сколько погонных метров в гравировке: <input oninput="kalkulyator()" type="number"
+                                    id="n_gravir" name="n_gravir" value="0" size="4" style="width: 40px;"> м</td>
+                        </tr>
+                        <tr id="tr_gravir2" style="display: none;">
+                            <td colspan="3" align="right">Стоимость гравировки: <output id="st_gravir0"></output><output
+                                    id="st_gravir">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_plenka0" class="th" style="color: rgb(10, 5, 119);">
+                            <td>12.</td>
+                            <td colspan="2"><label>Наклейка пленки: <input onclick="kalkulyator()" type="checkbox"
+                                        id="view_plenka"> </label></td>
+                        </tr>
+                        <tr id="tr_plenka1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Защитная пленка <input onclick="kalkulyator()" type="radio" id="plenka_1"
+                                                        name="plenka10" value="1"> </label></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Цветная пленка <input onclick="kalkulyator()" type="radio" id="plenka_2"
+                                                        name="plenka10" value="2"> </label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="tr_plenka2" style="display: none;">
+                            <td colspan="3" align="right">Стоимость наклейки пленки: <output id="st_plenka0"></output><output
+                                    id="st_plenka">0</output> тг.</td>
+                        </tr>
+                        <tr class="th">
+                            <td>13.</td>
+                            <td colspan="2"><label>Вызов замерщика: <input onclick="kalkulyator()" type="checkbox"
+                                        id="view_zamer"> </label></td>
+                        </tr>
+                        <tr id="tr_zamer1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Нур-Султан <input onclick="kalkulyator()" type="radio" id="zamer_1"
+                                                        name="zamer10" value="1"> </label></td>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <!-- <td><label>Подмосковье <input onclick="kalkulyator()" type="radio" id="zamer_2"
+                                                        name="zamer10" value="2"> </label></td> -->
+                                        </tr>
+                                        <tr id="tr_km_zamer" style="display: none;">
+                                            <!-- <td colspan="3">&nbsp;</td>
+                                            <td>Расстояние от МКАД: <input oninput="kalkulyator()" type="number" id="n_km_zamer"
+                                                    name="n_km_zamer" value="0" size="4" style="width: 40px;"> км</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="tr_zamer2" style="display: none;">
+                            <td colspan="3" align="right">Стоимость замера: <output id="st_zamer">0</output> тг.</td>
+                        </tr>
+                        <tr class="th">
+                            <td>14.</td>
+                            <td colspan="2"><label>Доставка: <input onclick="kalkulyator()" type="checkbox"
+                                        id="view_dostavka"></label></td>
+                        </tr>
+                        <tr id="tr_dostavka1" style="display: none;">
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                <table border="0" cellspacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Доставка курьером<input checked onclick="kalkulyator()" type="radio" id="dostavka_1"
+                                                        name="dostavka10" value="1"> </label></td>
+                                            <td id="nur-sultan" style="display: none;">Нур-Султан</td>
+                                            <td width="100" align="right">&nbsp;</td>
+                                            <td><label>Самовывоз<input onclick="kalkulyator()" type="radio" id="dostavka_2"
+                                                        name="dostavka10" value="2"> </label></td>
+                                        </tr>
+                                        <tr id="tr_km" style="display: none;">
+                                            <!-- <td colspan="3">&nbsp;</td>
+                                            <td>Расстояние от МКАД: <input oninput="kalkulyator()" type="number" id="n_km"
+                                                    name="n_km" value="0" size="4" style="width: 40px;"> км</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="tr_dostavka2" style="display: none;">
+                            <td colspan="3" align="right">Стоимость доставки: <output id="st_dostavka">0</output> тг.</td>
+                        </tr>
+                        <tr id="tr_itogo">
+                            <td colspan="3" align="right">Итоговая стоимость заказа: <output id="st_itogo">1130</output> тг.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            Способ оплаты: <select onclick="kalkulyator()" id="payment_method">
+                <option value="Наличными">Наличными</option>
+                <option value="Картой">Картой</option>
+                <option value="Перевод">Перевод</option>
+            </select>
+            <textarea id="comment_for_order" cols="5" rows="5"></textarea>
+            <button onclick="makePdfOrder()" class="mainButton">Отправить заказ</button>
+            <div class="personal_cabinet">
+                <p>Личный кабинет</p>
+                <div class="status"></div>
+                <div class="status-email"></div>
+                <div class="status-fname"></div>
+            </div>
             </div>
         </div>  
     </div>
@@ -580,6 +593,7 @@
     <script src="js/script.js"></script>
     <script src="admin/js/auth.js"></script>
     <script src="admin/js/index.js"></script>
+    <script src="admin/js/calculator.js"></script>
     <script src="/slick/slick.min.js"></script>
 </body>
 </html>
